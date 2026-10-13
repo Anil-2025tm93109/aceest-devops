@@ -1,3 +1,6 @@
+import re
+from datetime import date
+
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -50,6 +53,9 @@ PROGRAMS = {
 }
 
 clients = {}
+progress = {}
+
+WEEK_PATTERN = re.compile(r"^\d{4}-W\d{2}$")
 
 
 def error(message, status):
@@ -59,6 +65,7 @@ def error(message, status):
 def reset_state():
     """Clear all in-memory data (used by the test suite)."""
     clients.clear()
+    progress.clear()
 
 
 def validate_profile(data):
@@ -83,7 +90,29 @@ def validate_profile(data):
     if program not in PROGRAMS:
         return None, "Invalid fitness program"
 
-    return {"age": age, "weight": float(weight), "program": program}, None
+    values = {"age": age, "weight": float(weight), "program": program}
+
+    target_weight = data.get("target_weight")
+    if target_weight is not None:
+        if (
+            isinstance(target_weight, bool)
+            or not isinstance(target_weight, (int, float))
+            or target_weight <= 0
+        ):
+            return None, "Target weight must be a positive number"
+        values["target_weight"] = float(target_weight)
+
+    target_adherence = data.get("target_adherence")
+    if target_adherence is not None:
+        if (
+            isinstance(target_adherence, bool)
+            or not isinstance(target_adherence, int)
+            or not 1 <= target_adherence <= 100
+        ):
+            return None, "Target adherence must be an integer from 1 to 100"
+        values["target_adherence"] = target_adherence
+
+    return values, None
 
 
 def build_client(name, profile):
@@ -186,7 +215,88 @@ def delete_client(name):
     if clients.pop(name, None) is None:
         return error("Client not found", 404)
 
+    progress.pop(name, None)
+
     return jsonify({"message": "Client deleted"}), 200
+
+
+def current_week():
+    iso = date.today().isocalendar()
+    return "{}-W{:02d}".format(iso[0], iso[1])
+
+
+@app.post("/clients/<name>/progress")
+def log_progress(name):
+    if name not in clients:
+        return error("Client not found", 404)
+
+    data = request.get_json(silent=True)
+
+    if not isinstance(data, dict):
+        return error("A JSON object is required", 400)
+
+    adherence = data.get("adherence")
+
+    if (
+        isinstance(adherence, bool)
+        or not isinstance(adherence, int)
+        or not 0 <= adherence <= 100
+    ):
+        return error("Adherence must be an integer from 0 to 100", 400)
+
+    week = data.get("week", current_week())
+
+    if not isinstance(week, str) or not WEEK_PATTERN.match(week):
+        return error("Week must look like 2026-W42", 400)
+
+    entry = {"week": week, "adherence": adherence}
+    progress.setdefault(name, []).append(entry)
+    return jsonify(entry), 201
+
+
+@app.get("/clients/<name>/progress")
+def get_progress(name):
+    if name not in clients:
+        return error("Client not found", 404)
+
+    return jsonify(progress.get(name, [])), 200
+
+
+@app.get("/clients/<name>/progress/summary")
+def progress_summary(name):
+    client = clients.get(name)
+
+    if client is None:
+        return error("Client not found", 404)
+
+    entries = progress.get(name, [])
+    summary = {
+        "name": name,
+        "weeks_logged": len(entries),
+        "average_adherence": 0,
+        "latest_adherence": None,
+        "target_adherence": client.get("target_adherence"),
+        "adherence_target_met": None,
+        "target_weight": client.get("target_weight"),
+        "weight_to_target": None,
+    }
+
+    if entries:
+        average = round(sum(e["adherence"] for e in entries) / len(entries), 1)
+        summary["average_adherence"] = average
+        summary["latest_adherence"] = entries[-1]["adherence"]
+
+        if summary["target_adherence"] is not None:
+            summary["adherence_target_met"] = (
+                average >= summary["target_adherence"]
+            )
+
+    if summary["target_weight"] is not None:
+        summary["weight_to_target"] = round(
+            client["weight"] - summary["target_weight"], 1
+        )
+
+    return jsonify(summary), 200
 
 
 if __name__ == "__main__":
