@@ -323,3 +323,183 @@ def test_delete_client_removes_progress(client):
     client.delete("/clients/Test User")
     client.post("/clients", json=PROFILE)
     assert client.get("/clients/Test User/progress").json == []
+
+
+def add_client(client, **extra):
+    response = client.post("/clients", json=dict(PROFILE, **extra))
+    assert response.status_code == 201
+    return response
+
+
+def test_height_is_stored_and_validated(client):
+    assert add_client(client, height=170).json["height"] == 170.0
+    for bad in (10, 500, "tall", True):
+        response = client.post(
+            "/clients", json=dict(PROFILE, name="X" + str(bad), height=bad)
+        )
+        assert response.status_code == 400
+
+
+def test_log_workout_with_exercises(client):
+    add_client(client)
+    response = client.post(
+        "/clients/Test User/workouts",
+        json={
+            "date": "2026-10-01",
+            "workout_type": "Strength",
+            "duration_min": 45,
+            "notes": "  heavy day ",
+            "exercises": [{"name": "Squat", "sets": 5, "reps": 5, "weight": 80}],
+        },
+    )
+    assert response.status_code == 201
+    assert response.json["id"] == 1
+    assert response.json["notes"] == "heavy day"
+    assert response.json["exercises"][0]["weight"] == 80.0
+
+
+def test_workout_defaults(client):
+    add_client(client)
+    response = client.post(
+        "/clients/Test User/workouts", json={"workout_type": "Cardio"}
+    )
+    assert response.status_code == 400
+    response = client.post(
+        "/clients/Test User/workouts", json={"workout_type": "Mobility"}
+    )
+    assert response.status_code == 201
+    assert response.json["duration_min"] == 60
+    assert response.json["exercises"] == []
+
+
+def test_workout_validation(client):
+    add_client(client)
+    url = "/clients/Test User/workouts"
+    ok = {"workout_type": "Mixed"}
+    assert client.post(url, json=dict(ok, date="01-10-2026")).status_code == 400
+    assert client.post(url, json=dict(ok, duration_min=0)).status_code == 400
+    assert client.post(url, json=dict(ok, notes=5)).status_code == 400
+    assert client.post(url, json=dict(ok, exercises="squat")).status_code == 400
+    assert client.post(url, json=dict(ok, exercises=["squat"])).status_code == 400
+    assert client.post(url, json=dict(ok, exercises=[{"name": ""}])).status_code == 400
+    assert client.post(
+        url, json=dict(ok, exercises=[{"name": "Row", "sets": 0}])
+    ).status_code == 400
+    assert client.post(
+        url, json=dict(ok, exercises=[{"name": "Row", "weight": -1}])
+    ).status_code == 400
+    assert client.post(url, data="nope").status_code == 400
+
+
+def test_workouts_sorted_newest_first(client):
+    add_client(client)
+    url = "/clients/Test User/workouts"
+    client.post(url, json={"workout_type": "Mixed", "date": "2026-09-01"})
+    client.post(url, json={"workout_type": "Strength", "date": "2026-10-01"})
+    client.post(url, json={"workout_type": "Mobility", "date": "2026-10-01"})
+    dates = [(w["date"], w["workout_type"]) for w in client.get(url).json]
+    assert dates == [
+        ("2026-10-01", "Mobility"),
+        ("2026-10-01", "Strength"),
+        ("2026-09-01", "Mixed"),
+    ]
+
+
+def test_workouts_and_metrics_need_existing_client(client):
+    assert client.get("/clients/Ghost/workouts").status_code == 404
+    assert client.post(
+        "/clients/Ghost/workouts", json={"workout_type": "Mixed"}
+    ).status_code == 404
+    assert client.get("/clients/Ghost/metrics").status_code == 404
+    assert client.post("/clients/Ghost/metrics", json={"weight": 70}).status_code == 404
+    assert client.get("/clients/Ghost/metrics/weight-trend").status_code == 404
+    assert client.get("/clients/Ghost/bmi").status_code == 404
+
+
+def test_log_metrics_updates_weight_and_calories(client):
+    add_client(client, height=170)
+    response = client.post(
+        "/clients/Test User/metrics",
+        json={"date": "2026-10-01", "weight": 68, "waist": 80, "bodyfat": 20},
+    )
+    assert response.status_code == 201
+    updated = client.get("/clients/Test User").json
+    assert updated["weight"] == 68.0
+    assert updated["calories"] == 1768
+    assert updated["height"] == 170.0
+
+
+def test_metrics_without_weight_keep_client_weight(client):
+    add_client(client)
+    client.post("/clients/Test User/metrics", json={"waist": 82})
+    assert client.get("/clients/Test User").json["weight"] == 70.0
+
+
+def test_metrics_validation(client):
+    add_client(client)
+    url = "/clients/Test User/metrics"
+    assert client.post(url, json={}).status_code == 400
+    assert client.post(url, json={"weight": 0}).status_code == 400
+    assert client.post(url, json={"waist": "wide"}).status_code == 400
+    assert client.post(url, json={"bodyfat": 100}).status_code == 400
+    assert client.post(url, json={"weight": 70, "date": "nope"}).status_code == 400
+    assert client.post(url, data="nope").status_code == 400
+
+
+def test_metrics_sorted_by_date(client):
+    add_client(client)
+    url = "/clients/Test User/metrics"
+    client.post(url, json={"weight": 69, "date": "2026-10-05"})
+    client.post(url, json={"weight": 70, "date": "2026-10-01"})
+    assert [m["date"] for m in client.get(url).json] == ["2026-10-01", "2026-10-05"]
+
+
+def test_weight_trend(client):
+    add_client(client)
+    url = "/clients/Test User/metrics"
+    empty = client.get(url + "/weight-trend").json
+    assert empty == {"dates": [], "weights": [], "change": None}
+    client.post(url, json={"weight": 72, "date": "2026-10-01"})
+    client.post(url, json={"waist": 80, "date": "2026-10-02"})
+    client.post(url, json={"weight": 69.5, "date": "2026-10-10"})
+    trend = client.get(url + "/weight-trend").json
+    assert trend["weights"] == [72.0, 69.5]
+    assert trend["change"] == -2.5
+
+
+def test_bmi_categories(client):
+    cases = [
+        ("Under", 50, 175, "Underweight"),
+        ("Normal", 70, 175, "Normal"),
+        ("Over", 85, 175, "Overweight"),
+        ("Obese", 110, 175, "Obese"),
+    ]
+    for name, weight, height, category in cases:
+        client.post(
+            "/clients",
+            json=dict(PROFILE, name=name, weight=weight, height=height),
+        )
+        response = client.get(f"/clients/{name}/bmi")
+        assert response.status_code == 200
+        assert response.json["category"] == category
+        assert response.json["risk"]
+
+
+def test_bmi_value(client):
+    add_client(client, height=175)
+    assert client.get("/clients/Test User/bmi").json["bmi"] == 22.9
+
+
+def test_bmi_requires_height(client):
+    add_client(client)
+    assert client.get("/clients/Test User/bmi").status_code == 400
+
+
+def test_delete_client_removes_workouts_and_metrics(client):
+    add_client(client)
+    client.post("/clients/Test User/workouts", json={"workout_type": "Mixed"})
+    client.post("/clients/Test User/metrics", json={"weight": 70})
+    client.delete("/clients/Test User")
+    add_client(client)
+    assert client.get("/clients/Test User/workouts").json == []
+    assert client.get("/clients/Test User/metrics").json == []

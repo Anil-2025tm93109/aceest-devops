@@ -54,6 +54,10 @@ PROGRAMS = {
 
 clients = {}
 progress = {}
+workouts = {}
+metrics = {}
+
+WORKOUT_TYPES = ["Strength", "Hypertrophy", "Conditioning", "Mixed", "Mobility"]
 
 WEEK_PATTERN = re.compile(r"^\d{4}-W\d{2}$")
 
@@ -66,6 +70,23 @@ def reset_state():
     """Clear all in-memory data (used by the test suite)."""
     clients.clear()
     progress.clear()
+    workouts.clear()
+    metrics.clear()
+
+
+def parse_date(value):
+    """Return an ISO date string (YYYY-MM-DD) or None if invalid."""
+    if not isinstance(value, str):
+        return None
+
+    try:
+        return date.fromisoformat(value).isoformat()
+    except ValueError:
+        return None
+
+
+def is_number(value):
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
 def validate_profile(data):
@@ -91,6 +112,12 @@ def validate_profile(data):
         return None, "Invalid fitness program"
 
     values = {"age": age, "weight": float(weight), "program": program}
+
+    height = data.get("height")
+    if height is not None:
+        if not is_number(height) or not 50 <= height <= 280:
+            return None, "Height must be a number between 50 and 280 cm"
+        values["height"] = float(height)
 
     target_weight = data.get("target_weight")
     if target_weight is not None:
@@ -216,6 +243,8 @@ def delete_client(name):
         return error("Client not found", 404)
 
     progress.pop(name, None)
+    workouts.pop(name, None)
+    metrics.pop(name, None)
 
     return jsonify({"message": "Client deleted"}), 200
 
@@ -297,6 +326,205 @@ def progress_summary(name):
         )
 
     return jsonify(summary), 200
+
+
+def validate_exercise(item):
+    if not isinstance(item, dict):
+        return None, "Each exercise must be an object"
+
+    ex_name = item.get("name")
+    sets = item.get("sets", 3)
+    reps = item.get("reps", 10)
+    weight = item.get("weight", 0)
+
+    if not isinstance(ex_name, str) or not ex_name.strip():
+        return None, "Exercise name is required"
+
+    for label, value in (("Sets", sets), ("Reps", reps)):
+        if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+            return None, f"{label} must be a positive integer"
+
+    if not is_number(weight) or weight < 0:
+        return None, "Exercise weight must be zero or more"
+
+    exercise = {
+        "name": ex_name.strip(),
+        "sets": sets,
+        "reps": reps,
+        "weight": float(weight),
+    }
+    return exercise, None
+
+
+@app.post("/clients/<name>/workouts")
+def log_workout(name):
+    if name not in clients:
+        return error("Client not found", 404)
+
+    data = request.get_json(silent=True)
+
+    if not isinstance(data, dict):
+        return error("A JSON object is required", 400)
+
+    workout_date = parse_date(data.get("date", date.today().isoformat()))
+
+    if workout_date is None:
+        return error("Date must be a valid YYYY-MM-DD value", 400)
+
+    workout_type = data.get("workout_type")
+
+    if workout_type not in WORKOUT_TYPES:
+        return error("Workout type must be one of " + ", ".join(WORKOUT_TYPES), 400)
+
+    duration = data.get("duration_min", 60)
+
+    if isinstance(duration, bool) or not isinstance(duration, int) or duration <= 0:
+        return error("Duration must be a positive integer", 400)
+
+    notes = data.get("notes", "")
+
+    if not isinstance(notes, str):
+        return error("Notes must be text", 400)
+
+    raw_exercises = data.get("exercises", [])
+
+    if not isinstance(raw_exercises, list):
+        return error("Exercises must be a list", 400)
+
+    exercises = []
+    for item in raw_exercises:
+        exercise, problem = validate_exercise(item)
+        if problem:
+            return error(problem, 400)
+        exercises.append(exercise)
+
+    entries = workouts.setdefault(name, [])
+    workout = {
+        "id": len(entries) + 1,
+        "date": workout_date,
+        "workout_type": workout_type,
+        "duration_min": duration,
+        "notes": notes.strip(),
+        "exercises": exercises,
+    }
+    entries.append(workout)
+    return jsonify(workout), 201
+
+
+@app.get("/clients/<name>/workouts")
+def list_workouts(name):
+    if name not in clients:
+        return error("Client not found", 404)
+
+    ordered = sorted(
+        workouts.get(name, []),
+        key=lambda w: (w["date"], w["id"]),
+        reverse=True,
+    )
+    return jsonify(ordered), 200
+
+
+@app.post("/clients/<name>/metrics")
+def log_metrics(name):
+    client = clients.get(name)
+
+    if client is None:
+        return error("Client not found", 404)
+
+    data = request.get_json(silent=True)
+
+    if not isinstance(data, dict):
+        return error("A JSON object is required", 400)
+
+    metric_date = parse_date(data.get("date", date.today().isoformat()))
+
+    if metric_date is None:
+        return error("Date must be a valid YYYY-MM-DD value", 400)
+
+    weight = data.get("weight")
+    waist = data.get("waist")
+    bodyfat = data.get("bodyfat")
+
+    if weight is None and waist is None and bodyfat is None:
+        return error("Provide at least one of weight, waist or bodyfat", 400)
+
+    for label, value in (("Weight", weight), ("Waist", waist)):
+        if value is not None and (not is_number(value) or value <= 0):
+            return error(f"{label} must be a positive number", 400)
+
+    if bodyfat is not None and (not is_number(bodyfat) or not 0 < bodyfat < 100):
+        return error("Bodyfat must be a percentage between 0 and 100", 400)
+
+    entry = {
+        "date": metric_date,
+        "weight": float(weight) if weight is not None else None,
+        "waist": float(waist) if waist is not None else None,
+        "bodyfat": float(bodyfat) if bodyfat is not None else None,
+    }
+    metrics.setdefault(name, []).append(entry)
+
+    if weight is not None:
+        profile = {key: client[key] for key in client if key not in ("name", "calories")}
+        profile["weight"] = float(weight)
+        clients[name] = build_client(name, profile)
+
+    return jsonify(entry), 201
+
+
+@app.get("/clients/<name>/metrics")
+def list_metrics(name):
+    if name not in clients:
+        return error("Client not found", 404)
+
+    ordered = sorted(metrics.get(name, []), key=lambda m: m["date"])
+    return jsonify(ordered), 200
+
+
+@app.get("/clients/<name>/metrics/weight-trend")
+def weight_trend(name):
+    if name not in clients:
+        return error("Client not found", 404)
+
+    points = [
+        m for m in sorted(metrics.get(name, []), key=lambda m: m["date"])
+        if m["weight"] is not None
+    ]
+    trend = {
+        "dates": [m["date"] for m in points],
+        "weights": [m["weight"] for m in points],
+        "change": None,
+    }
+
+    if len(points) >= 2:
+        trend["change"] = round(points[-1]["weight"] - points[0]["weight"], 1)
+
+    return jsonify(trend), 200
+
+
+def bmi_category(bmi):
+    if bmi < 18.5:
+        return "Underweight", "Potential nutrient deficiency, low energy."
+    if bmi < 25:
+        return "Normal", "Low risk if active and strong."
+    if bmi < 30:
+        return "Overweight", "Moderate risk; focus on adherence and progressive activity."
+    return "Obese", "Higher risk; prioritize fat loss, consistency, and supervision."
+
+
+@app.get("/clients/<name>/bmi")
+def get_bmi(name):
+    client = clients.get(name)
+
+    if client is None:
+        return error("Client not found", 404)
+
+    if "height" not in client:
+        return error("Client height is required to calculate BMI", 400)
+
+    height_m = client["height"] / 100.0
+    bmi = round(client["weight"] / (height_m * height_m), 1)
+    category, risk = bmi_category(bmi)
+    return jsonify({"name": name, "bmi": bmi, "category": category, "risk": risk}), 200
 
 
 if __name__ == "__main__":
