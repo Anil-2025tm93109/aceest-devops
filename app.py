@@ -56,6 +56,7 @@ clients = {}
 progress = {}
 workouts = {}
 metrics = {}
+generated_programs = {}
 
 WORKOUT_TYPES = ["Strength", "Hypertrophy", "Conditioning", "Mixed", "Mobility"]
 
@@ -72,6 +73,7 @@ def reset_state():
     progress.clear()
     workouts.clear()
     metrics.clear()
+    generated_programs.clear()
 
 
 def parse_date(value):
@@ -118,6 +120,13 @@ def validate_profile(data):
         if not is_number(height) or not 50 <= height <= 280:
             return None, "Height must be a number between 50 and 280 cm"
         values["height"] = float(height)
+
+    expiry = data.get("membership_expiry")
+    if expiry is not None:
+        expiry = parse_date(expiry)
+        if expiry is None:
+            return None, "Membership expiry must be a valid YYYY-MM-DD date"
+        values["membership_expiry"] = expiry
 
     target_weight = data.get("target_weight")
     if target_weight is not None:
@@ -245,6 +254,7 @@ def delete_client(name):
     progress.pop(name, None)
     workouts.pop(name, None)
     metrics.pop(name, None)
+    generated_programs.pop(name, None)
 
     return jsonify({"message": "Client deleted"}), 200
 
@@ -291,13 +301,7 @@ def get_progress(name):
     return jsonify(progress.get(name, [])), 200
 
 
-@app.get("/clients/<name>/progress/summary")
-def progress_summary(name):
-    client = clients.get(name)
-
-    if client is None:
-        return error("Client not found", 404)
-
+def build_progress_summary(name, client):
     entries = progress.get(name, [])
     summary = {
         "name": name,
@@ -325,7 +329,17 @@ def progress_summary(name):
             client["weight"] - summary["target_weight"], 1
         )
 
-    return jsonify(summary), 200
+    return summary
+
+
+@app.get("/clients/<name>/progress/summary")
+def progress_summary(name):
+    client = clients.get(name)
+
+    if client is None:
+        return error("Client not found", 404)
+
+    return jsonify(build_progress_summary(name, client)), 200
 
 
 def validate_exercise(item):
@@ -511,6 +525,13 @@ def bmi_category(bmi):
     return "Obese", "Higher risk; prioritize fat loss, consistency, and supervision."
 
 
+def build_bmi(client):
+    height_m = client["height"] / 100.0
+    bmi = round(client["weight"] / (height_m * height_m), 1)
+    category, risk = bmi_category(bmi)
+    return {"name": client["name"], "bmi": bmi, "category": category, "risk": risk}
+
+
 @app.get("/clients/<name>/bmi")
 def get_bmi(name):
     client = clients.get(name)
@@ -521,10 +542,177 @@ def get_bmi(name):
     if "height" not in client:
         return error("Client height is required to calculate BMI", 400)
 
-    height_m = client["height"] / 100.0
-    bmi = round(client["weight"] / (height_m * height_m), 1)
-    category, risk = bmi_category(bmi)
-    return jsonify({"name": name, "bmi": bmi, "category": category, "risk": risk}), 200
+    return jsonify(build_bmi(client)), 200
+
+
+def reference_date():
+    """Return (date, error). `?as_of=YYYY-MM-DD` overrides today's date."""
+    raw = request.args.get("as_of")
+
+    if raw is None:
+        return date.today(), None
+
+    parsed = parse_date(raw)
+
+    if parsed is None:
+        return None, "as_of must be a valid YYYY-MM-DD date"
+
+    return date.fromisoformat(parsed), None
+
+
+def build_membership(client, today):
+    expiry = client.get("membership_expiry")
+
+    if expiry is None:
+        return {
+            "status": "No membership",
+            "membership_expiry": None,
+            "days_remaining": None,
+        }
+
+    days_remaining = (date.fromisoformat(expiry) - today).days
+    return {
+        "status": "Active" if days_remaining >= 0 else "Expired",
+        "membership_expiry": expiry,
+        "days_remaining": days_remaining,
+    }
+
+
+@app.get("/clients/<name>/membership")
+def get_membership(name):
+    client = clients.get(name)
+
+    if client is None:
+        return error("Client not found", 404)
+
+    today, problem = reference_date()
+
+    if problem:
+        return error(problem, 400)
+
+    return jsonify(dict(build_membership(client, today), name=name)), 200
+
+
+EXPERIENCE_LEVELS = {
+    "beginner": {"sets": 3, "reps": 10, "days": 3, "per_day": 3},
+    "intermediate": {"sets": 4, "reps": 12, "days": 4, "per_day": 4},
+    "advanced": {"sets": 5, "reps": 8, "days": 5, "per_day": 4},
+}
+
+EXERCISE_POOLS = {
+    "Strength": [
+        "Squat", "Deadlift", "Bench Press",
+        "Overhead Press", "Pull-Up", "Barbell Row",
+    ],
+    "Hypertrophy": [
+        "Leg Press", "Incline Dumbbell Press", "Lat Pulldown",
+        "Lateral Raise", "Bicep Curl", "Tricep Extension",
+    ],
+    "Conditioning": [
+        "Running", "Cycling", "Rowing",
+        "Burpees", "Jump Rope", "Kettlebell Swings",
+    ],
+    "Full Body": [
+        "Push-Up", "Pull-Up", "Lunge",
+        "Plank", "Dumbbell Row", "Dumbbell Press",
+    ],
+}
+
+WEEK_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+
+def program_focus(program_name):
+    if "Fat Loss" in program_name:
+        return "Conditioning"
+    if "Muscle Gain" in program_name:
+        return "Hypertrophy"
+    return "Full Body"
+
+
+@app.post("/clients/<name>/generate-program")
+def generate_program(name):
+    client = clients.get(name)
+
+    if client is None:
+        return error("Client not found", 404)
+
+    data = request.get_json(silent=True)
+
+    if not isinstance(data, dict):
+        return error("A JSON object is required", 400)
+
+    experience = data.get("experience")
+
+    if not isinstance(experience, str) or experience.lower() not in EXPERIENCE_LEVELS:
+        return error("Experience must be beginner, intermediate or advanced", 400)
+
+    experience = experience.lower()
+    level = EXPERIENCE_LEVELS[experience]
+    focus = program_focus(client["program"])
+    pool = EXERCISE_POOLS[focus]
+
+    days = []
+    for index in range(level["days"]):
+        start = index * level["per_day"]
+        picks = [pool[(start + n) % len(pool)] for n in range(level["per_day"])]
+        days.append(
+            {
+                "day": WEEK_DAYS[index],
+                "exercises": [
+                    {"exercise": pick, "sets": level["sets"], "reps": level["reps"]}
+                    for pick in picks
+                ],
+            }
+        )
+
+    plan = {"name": name, "experience": experience, "focus": focus, "days": days}
+    generated_programs[name] = plan
+    return jsonify(plan), 201
+
+
+@app.get("/clients/<name>/generate-program")
+def get_generated_program(name):
+    if name not in clients:
+        return error("Client not found", 404)
+
+    plan = generated_programs.get(name)
+
+    if plan is None:
+        return error("No program has been generated yet", 404)
+
+    return jsonify(plan), 200
+
+
+@app.get("/clients/<name>/report")
+def client_report(name):
+    client = clients.get(name)
+
+    if client is None:
+        return error("Client not found", 404)
+
+    today, problem = reference_date()
+
+    if problem:
+        return error(problem, 400)
+
+    sessions = workouts.get(name, [])
+    weights = [m for m in metrics.get(name, []) if m["weight"] is not None]
+    latest = max(metrics.get(name, []), key=lambda m: m["date"], default=None)
+
+    report = {
+        "profile": client,
+        "membership": build_membership(client, today),
+        "progress": build_progress_summary(name, client),
+        "bmi": build_bmi(client) if "height" in client else None,
+        "workouts": {
+            "sessions": len(sessions),
+            "total_minutes": sum(w["duration_min"] for w in sessions),
+        },
+        "metrics": {"entries": len(weights), "latest": latest},
+        "generated_program": generated_programs.get(name),
+        "generated_on": today.isoformat(),
+    }
+    return jsonify(report), 200
 
 
 if __name__ == "__main__":
