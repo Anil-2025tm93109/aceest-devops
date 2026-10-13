@@ -1,0 +1,356 @@
+Started by user [8mha:////4HAGt8+VXa2DOQvqJI9tDtaF4oS8GAqDO+bbZTdIjtUwAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL95Jz80hQALbrOl8AAAAA=[0mcloud
+Obtained Jenkinsfile from git https://github.com/Anil-2025tm93109/aceest-devops.git
+[8mha:////4Ah19PtAc/oxmqSlOkDtbfPf8b1juuRiaEerS1iEvmowAAAAoh+LCAAAAAAAAP9tjTEOwjAQBM8BClpKHuFItIiK1krDC0x8GCfWnbEdkooX8TX+gCESFVvtrLSa5wtWKcKBo5UdUu8otU4GP9jS5Mixv3geZcdn2TIl9igbHBs2eJyx4YwwR1SwULBGaj0nRzbDRnX6rmuvydanHMu2V1A5c4MHCFXMWcf8hSnC9jqYxPTz/BXAFEIGsfuclm8zQVqFvQAAAA==[0m[Pipeline] Start of Pipeline
+[8mha:////4P+1LMwceaydYlLTpEp+bz+aeHHighGMpT6FZ43AfMoHAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycohUghExsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jduZBmjwAAAAA==[0m[Pipeline] node
+Running on [8mha:////4CecPcTUMhIgbfrVYrr+Dk2z1Zf0BrFhyqxQpaxlE4HbAAAAoR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAz2EgZR/eT83ILSktQifY2k0sycEt3MPE19AHHxbH3KAAAA[0mJenkins in /var/lib/jenkins/workspace/aceest-fitness-build
+[8mha:////4BmLYMtZo99xPRyG0F/vMa07TW0m06/zNVUk164KrPm9AAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0gA0xsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jfoP95RwAAAAA==[0m[Pipeline] {
+[8mha:////4P/myHmvNAMFWJylilItur41Ujz9gyOPef9iqT6JEIrDAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0gQkxsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jc09154wAAAAA==[0m[Pipeline] stage
+[8mha:////4IVZT9plyjxEkcgWm/5rxV3enNO3zfJNL1Qp5jAaA5hNAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0ggUxsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jek7ggRwAAAAA==[0m[Pipeline] { (Declarative: Checkout SCM)
+[8mha:////4OUmjH88uQEteOAXq/bCvuDSFPcUQwLo5xks/OErvqhHAAAAoh+LCAAAAAAAAP9tjTEOAiEURD9rLGwtPQTbaWGsbAmNJ0AWEZb8zwLrbuWJvJp3kLiJlZNMMm+a93rDOic4UbLcG+wdZu14DKOti0+U+lugiXu6ck2YKRguzSSpM+cFJRUDS1gDKwEbgzpQdmgLbIVXD9UGhba9lFS/o4DGdQM8gYlqLiqVL8wJdvexy4Q/z18BzLEA29ce4gfg7KmOvAAAAA==[0m[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/aceest-fitness-build/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Anil-2025tm93109/aceest-devops.git # timeout=10
+Fetching upstream changes from https://github.com/Anil-2025tm93109/aceest-devops.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.5'
+ > git fetch --tags --force --progress -- https://github.com/Anil-2025tm93109/aceest-devops.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 9a58d18a13272ddf2220558afd54347e45bcc251 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 9a58d18a13272ddf2220558afd54347e45bcc251 # timeout=10
+Commit message: "Merge pull request #7 from Anil-2025tm93109/docs/readme"
+ > git rev-list --no-walk 9a58d18a13272ddf2220558afd54347e45bcc251 # timeout=10
+[8mha:////4CiTBYmaPdeiHH1GMOETDbcxHzCFlS2w81PgjSAZqlQaAAAAoh+LCAAAAAAAAP9tjTEOAiEURD9rLGwtPQTbGRNjZUtoPAGyiLDkfxZYdytP5NW8g8RNrJxkknnTvNcb1jnBiZLl3mDvMGvHYxhtXXyi1N8CTdzTlWvCTMFwaSZJnTkvKKkYWMIaWAnYGNSBskNbYCu8eqg2KLTtpaT6HQU0rhvgCUxUc1GpfGFOsLuPXSb8ef4KYI6xADvU7j9Dg2gqvAAAAA==[0m[Pipeline] }
+[8mha:////4A7yZ6pkORTZFdBj3935gR6BSmudYIoP3tkJd9jd2vZRAAAAoh+LCAAAAAAAAP9tjTEOAiEURD9rLGwtPQRbWRhjZUtoPAGyiLDkfxZYdytP5NW8g8RNrJxkknnTvNcb1jnBiZLl3mDvMGvHYxhtXXyi1N8CTdzTlWvCTMFwaSZJnTkvKKkYWMIaWAnYGNSBskNbYCu8eqg2KLTtpaT6HQU0rhvgCUxUc1GpfGFOsLuPXSb8ef4KYI6xADvU7j9J+wGOvAAAAA==[0m[Pipeline] // stage
+[8mha:////4GXHuu+NdX032zEFqRPv4NVvRCmmxJtRcDGJl5Epn0R+AAAAph+LCAAAAAAAAP9tjTEOwjAQBM9BKWgpeYQDEh2iorXc8AITG+PEugv2haTiRXyNPxCIRMVWOyut5vmCMic4UPKycdgGzHWQXez91ORAqb1EGmRDZ1kTZopOajdosu44oyZ2MEcUsFCwdFhHygE9w0o15m6qaNBXJ07TtldQBHuDBwg1mdkk/sKYYH3tbSb8ef4KYOwYxI6h2G4+x/INtuQqUcEAAAA=[0m[Pipeline] withEnv
+[8mha:////4MJ47tG6zmGvvUiobx7nQrXnmBAp7VDUNKGpSOTLkPd/AAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+DOrAycoiUzoiJNerCCUITQtLo/zZJSSdOxNW4Ay2VmPBg2Zas93pDGQOcKBjuNHYWY2t570czJ54pdDdPmTu68pYwkte80bkhpc9rbShpWFUw2AjYamw9RYsmwU44+ZCVl2iqSwrzdhTArBrgCYWYyUmG9C1TgP19VJHwx/kLgKlPwOrDYvXyLD8BobDcwgAAAA==[0m[Pipeline] {
+[8mha:////4OpZmg/cW09oYHbVMk9oKGpwQMQ+Ajalql0Yez78obKFAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUZUVMrFEWThCaEJJG/7dJSjpxIq7GHWipxIQHy7ZkvdcbqhjgRMEwp7GzGFvLej+aObFMobt5yszRlbWEkbxmQmdBSp/XKihpWFWUsOGw1dh6ihZNgh138iFrL9HUlxTm7cihtGqAJxR8JicZ0rdMAfb3UUXCH+cvAKY+Qdk0ix2WZ/UBbwyqm8IAAAA=[0m[Pipeline] withEnv
+[8mha:////4D0j9z5+aHIQFmXMIG3YLIumpOV2M2sXSOYc6STJUvgHAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUwIiYukZZOEFoQkgb/V9+UtqJE3E17kBLJSY8WLYl673eUESGE7ETjcXWY6y96ELvpiQG4vYaaBANXURNGClYoeygyNhqqYqShUVZDisJa4t1oOjRJdjIRj90GTS68px42o4Scm/u8IRMTuSkOX3LyLC99SYS/jh/ATB2CfLdfrbD/Cw+y7kUycIAAAA=[0m[Pipeline] {
+[8mha:////4N3mt9qVm2h23eKFbfzHar3foCbo7HlqClnQCyTzTMGBAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUCDbE1DXKwglCE0La6P/yk9JOnIircQdaKjHhwbItWe/1hiIynIidaCy2HmPtRRd6NyUxELfXQINo6CJqwkjBCmUHRcZWS1WULCzKclhJWFusA0WPLsFGNvqhy6DRlefE03aUkHtzhydkciInzelbRobtrTeR8Mf5C4CxS5Dv9rMd5mfxAbNWnxXCAAAA[0m[Pipeline] timestamps
+[8mha:////4B6B+txyCRgpPQTeNsZ95SnLmKJItS30Vmlx85thN85mAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUSDAhpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD5WQ+PfCAAAA[0m[Pipeline] {
+[8mha:////4Nij8bfHA3hxqA2nwLHsIXCuhIfjfYgzq3i68FiZ9j+iAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUDLAgpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD/s94rDCAAAA[0m[Pipeline] stage
+[8mha:////4E2SHPUDOCm1yhNfUCiKXhgskTl5TaJbZ1VIm8XEsADqAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohULDAgpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD1+IXOLCAAAA[0m[Pipeline] { (Checkout)
+[8mha:////4MmEqDsC7K1KvJtg9scgZ4pPHQiBj6M4nZP+VmSW4d7XAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiKpAQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGPIUG53n9qHNxXfVKy+AAAA[0m[Pipeline] checkout
+[2026-10-13T13:56:26.590Z] Selected Git installation does not exist. Using Default
+[2026-10-13T13:56:26.591Z] The recommended git tool is: NONE
+[2026-10-13T13:56:26.591Z] No credentials specified
+[2026-10-13T13:56:26.592Z]  > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/aceest-fitness-build/.git # timeout=10
+[2026-10-13T13:56:26.620Z] Fetching changes from the remote Git repository
+[2026-10-13T13:56:26.624Z]  > git config remote.origin.url https://github.com/Anil-2025tm93109/aceest-devops.git # timeout=10
+[2026-10-13T13:56:26.653Z] Fetching upstream changes from https://github.com/Anil-2025tm93109/aceest-devops.git
+[2026-10-13T13:56:26.653Z]  > git --version # timeout=10
+[2026-10-13T13:56:26.668Z]  > git --version # 'git version 2.43.5'
+[2026-10-13T13:56:26.668Z]  > git fetch --tags --force --progress -- https://github.com/Anil-2025tm93109/aceest-devops.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-10-13T13:56:27.270Z]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[2026-10-13T13:56:27.284Z] Checking out Revision 9a58d18a13272ddf2220558afd54347e45bcc251 (refs/remotes/origin/main)
+[2026-10-13T13:56:27.284Z]  > git config core.sparsecheckout # timeout=10
+[2026-10-13T13:56:27.292Z]  > git checkout -f 9a58d18a13272ddf2220558afd54347e45bcc251 # timeout=10
+[2026-10-13T13:56:27.307Z] Commit message: "Merge pull request #7 from Anil-2025tm93109/docs/readme"
+[8mha:////4D5wKAMoevAquJVDRQiHkCI5nNJComrQpuCYroh5kxwZAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiKoQQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGMIGcrt/lO7N9Jjga++AAAA[0m[Pipeline] }
+[8mha:////4Eu07tXXqiXOalXrFRhBKi8A3TtIeBs8aEQqiWL91yBUAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOICFDQoFa3lhheYxBgn1l2wHZyKF/E1/oBFJCq2WO1sM683LIOHmr3BTlNvKTQWBzeavDCx76+OE3Z8wYYpsNModZLc6tOMkqOGOUUJCwErTY3jYMlEWItOPVTlFJnqHH3+jgJK297hCYXI5qh8/MLkYXMb28D08/wVwDQMEcr9Ntfu8AERGGHOvgAAAA==[0m[Pipeline] // stage
+[8mha:////4M2UHbnAfJqFApvQaonol993SUnoD3i3ArjCZPibJsSbAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohURWJCTF2jLpwgNCEkjf4vSUo6cSKuxh0IVGLCg2Vbst7zBVXwcCSvmVU4GAy9YaObdE4skR8ujhKzdGY9YSCnWKdSR1K1S+0oKlhUlLDisFbYOwoGdYQNt+IuaidQ16fo83bgUBp5gwcUPJOj8PFbZg/b6yQD4Y/zFwDzGKFs9tl2zedZvQHeFw+cwgAAAA==[0m[Pipeline] stage
+[8mha:////4LQ1tBhEv0kogGhX+2n3gv5SdXPQ2yt9xKLArAX6ZY8KAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+DOrAycohUdEVMrFEXThCaEJJG/7dJSjpxIq7GHWipxIQHy7ZkvdcbyhjgRMFwp7GzGFvLez+aOfFMobt5ytzRlbeEkbzmjc4NKX1ea0NJw6qCwUbAVmPrKVo0CXbCyYesvERTXVKYt6MAZtUATyjETE4ypG+ZAuzvo4qEP85fAEx9AlYfFquXZ/kBAsTc3cIAAAA=[0m[Pipeline] { (Clean Build)
+[8mha:////4GTg4Xth/WD8kgmrXTjuMT//x7ZpAQuQAC2Tz5ozx6MaAAAAox+LCAAAAAAAAP9tjTESwiAURH/iWNhaeggyE0vHypah8QSYIEKY/wkQSeWJvJp3EM2MlVvs7NvmPV+wjgGOFDSzCgeDsTPMu0mXxTKF4eooM0sX1hFGcooJlQX16rSgoKRgSVXDisNGYecoGtQJttzKu2ycRN2cUyjfgUNt+hEeUPFiTjKkL8wBdrepj4Q/z18BzD5B3baf2vs3w5BRkb4AAAA=[0m[Pipeline] sh
+[2026-10-13T13:56:27.812Z] + docker build --no-cache --target test -t aceest-fitness:test-3 .
+[2026-10-13T13:56:28.374Z] #0 building with "default" instance using docker driver
+[2026-10-13T13:56:28.375Z] 
+[2026-10-13T13:56:28.375Z] #1 [internal] load build definition from Dockerfile
+[2026-10-13T13:56:28.375Z] #1 transferring dockerfile: 1.58kB done
+[2026-10-13T13:56:28.375Z] #1 DONE 0.0s
+[2026-10-13T13:56:28.375Z] 
+[2026-10-13T13:56:28.375Z] #2 [internal] load metadata for docker.io/library/python:3.11-slim
+[2026-10-13T13:56:29.288Z] #2 DONE 1.2s
+[2026-10-13T13:56:29.288Z] 
+[2026-10-13T13:56:29.288Z] #3 [internal] load .dockerignore
+[2026-10-13T13:56:29.288Z] #3 transferring context: 231B done
+[2026-10-13T13:56:29.289Z] #3 DONE 0.0s
+[2026-10-13T13:56:29.289Z] 
+[2026-10-13T13:56:29.289Z] #4 [base 1/4] FROM docker.io/library/python:3.11-slim@sha256:e88e9763f943ec1834f992a4b51e0f24500486803e8bc534e5767af9ea65f6ce
+[2026-10-13T13:56:29.289Z] #4 DONE 0.0s
+[2026-10-13T13:56:29.289Z] 
+[2026-10-13T13:56:29.289Z] #5 [base 2/4] WORKDIR /app
+[2026-10-13T13:56:29.289Z] #5 CACHED
+[2026-10-13T13:56:29.289Z] 
+[2026-10-13T13:56:29.289Z] #6 [internal] load build context
+[2026-10-13T13:56:29.289Z] #6 transferring context: 42.78kB done
+[2026-10-13T13:56:29.289Z] #6 DONE 0.0s
+[2026-10-13T13:56:29.289Z] 
+[2026-10-13T13:56:29.289Z] #7 [base 3/4] COPY requirements.txt .
+[2026-10-13T13:56:29.289Z] #7 DONE 0.1s
+[2026-10-13T13:56:29.540Z] 
+[2026-10-13T13:56:29.541Z] #8 [base 4/4] RUN pip install -r requirements.txt
+[2026-10-13T13:56:33.670Z] #8 4.081 Collecting Flask<3.2,>=3.1 (from -r requirements.txt (line 1))
+[2026-10-13T13:56:33.671Z] #8 4.116   Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+[2026-10-13T13:56:33.671Z] #8 4.198 Collecting gunicorn<24,>=23.0 (from -r requirements.txt (line 2))
+[2026-10-13T13:56:33.671Z] #8 4.204   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+[2026-10-13T13:56:33.671Z] #8 4.253 Collecting blinker>=1.9.0 (from Flask<3.2,>=3.1->-r requirements.txt (line 1))
+[2026-10-13T13:56:33.671Z] #8 4.259   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+[2026-10-13T13:56:33.671Z] #8 4.316 Collecting click>=8.1.3 (from Flask<3.2,>=3.1->-r requirements.txt (line 1))
+[2026-10-13T13:56:33.924Z] #8 4.322   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+[2026-10-13T13:56:33.924Z] #8 4.359 Collecting itsdangerous>=2.2.0 (from Flask<3.2,>=3.1->-r requirements.txt (line 1))
+[2026-10-13T13:56:33.924Z] #8 4.363   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+[2026-10-13T13:56:33.924Z] #8 4.424 Collecting jinja2>=3.1.2 (from Flask<3.2,>=3.1->-r requirements.txt (line 1))
+[2026-10-13T13:56:33.925Z] #8 4.429   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+[2026-10-13T13:56:33.925Z] #8 4.600 Collecting markupsafe>=2.1.1 (from Flask<3.2,>=3.1->-r requirements.txt (line 1))
+[2026-10-13T13:56:34.176Z] #8 4.606   Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+[2026-10-13T13:56:34.176Z] #8 4.697 Collecting werkzeug>=3.1.0 (from Flask<3.2,>=3.1->-r requirements.txt (line 1))
+[2026-10-13T13:56:34.176Z] #8 4.702   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+[2026-10-13T13:56:34.176Z] #8 4.724 Requirement already satisfied: packaging in /usr/local/lib/python3.11/site-packages (from gunicorn<24,>=23.0->-r requirements.txt (line 2)) (26.3)
+[2026-10-13T13:56:34.176Z] #8 4.759 Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+[2026-10-13T13:56:34.177Z] #8 4.770    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.4/103.4 kB 77.3 MB/s eta 0:00:00
+[2026-10-13T13:56:34.177Z] #8 4.777 Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+[2026-10-13T13:56:34.177Z] #8 4.783    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.0/85.0 kB 95.2 MB/s eta 0:00:00
+[2026-10-13T13:56:34.177Z] #8 4.790 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+[2026-10-13T13:56:34.177Z] #8 4.797 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+[2026-10-13T13:56:34.431Z] #8 4.804    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.3/125.3 kB 146.0 MB/s eta 0:00:00
+[2026-10-13T13:56:34.431Z] #8 4.810 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+[2026-10-13T13:56:34.431Z] #8 4.815 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+[2026-10-13T13:56:34.431Z] #8 4.820    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 155.1 MB/s eta 0:00:00
+[2026-10-13T13:56:34.431Z] #8 4.826 Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+[2026-10-13T13:56:34.431Z] #8 4.833 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+[2026-10-13T13:56:34.431Z] #8 4.840    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 228.7/228.7 kB 142.8 MB/s eta 0:00:00
+[2026-10-13T13:56:34.431Z] #8 4.998 Installing collected packages: markupsafe, itsdangerous, gunicorn, click, blinker, werkzeug, jinja2, Flask
+[2026-10-13T13:56:35.344Z] #8 5.901 Successfully installed Flask-3.1.3 blinker-1.9.0 click-8.5.0 gunicorn-23.0.0 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 werkzeug-3.1.9
+[2026-10-13T13:56:35.344Z] #8 5.902 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[2026-10-13T13:56:35.595Z] #8 DONE 6.2s
+[2026-10-13T13:56:35.846Z] 
+[2026-10-13T13:56:35.846Z] #9 [test 1/4] COPY requirements-dev.txt .
+[2026-10-13T13:56:35.847Z] #9 DONE 0.1s
+[2026-10-13T13:56:35.847Z] 
+[2026-10-13T13:56:35.847Z] #10 [test 2/4] RUN pip install -r requirements-dev.txt
+[2026-10-13T13:56:39.077Z] #10 3.008 Requirement already satisfied: Flask<3.2,>=3.1 in /usr/local/lib/python3.11/site-packages (from -r requirements.txt (line 1)) (3.1.3)
+[2026-10-13T13:56:39.078Z] #10 3.012 Requirement already satisfied: gunicorn<24,>=23.0 in /usr/local/lib/python3.11/site-packages (from -r requirements.txt (line 2)) (23.0.0)
+[2026-10-13T13:56:39.078Z] #10 3.219 Collecting pytest<9,>=8.3 (from -r requirements-dev.txt (line 2))
+[2026-10-13T13:56:39.078Z] #10 3.248   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+[2026-10-13T13:56:39.990Z] #10 4.362 Collecting ruff<0.13,>=0.12 (from -r requirements-dev.txt (line 3))
+[2026-10-13T13:56:40.248Z] #10 4.368   Downloading ruff-0.12.12-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (25 kB)
+[2026-10-13T13:56:40.249Z] #10 4.387 Requirement already satisfied: blinker>=1.9.0 in /usr/local/lib/python3.11/site-packages (from Flask<3.2,>=3.1->-r requirements.txt (line 1)) (1.9.0)
+[2026-10-13T13:56:40.249Z] #10 4.390 Requirement already satisfied: click>=8.1.3 in /usr/local/lib/python3.11/site-packages (from Flask<3.2,>=3.1->-r requirements.txt (line 1)) (8.5.0)
+[2026-10-13T13:56:40.249Z] #10 4.391 Requirement already satisfied: itsdangerous>=2.2.0 in /usr/local/lib/python3.11/site-packages (from Flask<3.2,>=3.1->-r requirements.txt (line 1)) (2.2.0)
+[2026-10-13T13:56:40.249Z] #10 4.393 Requirement already satisfied: jinja2>=3.1.2 in /usr/local/lib/python3.11/site-packages (from Flask<3.2,>=3.1->-r requirements.txt (line 1)) (3.1.6)
+[2026-10-13T13:56:40.249Z] #10 4.396 Requirement already satisfied: markupsafe>=2.1.1 in /usr/local/lib/python3.11/site-packages (from Flask<3.2,>=3.1->-r requirements.txt (line 1)) (3.0.4)
+[2026-10-13T13:56:40.249Z] #10 4.400 Requirement already satisfied: werkzeug>=3.1.0 in /usr/local/lib/python3.11/site-packages (from Flask<3.2,>=3.1->-r requirements.txt (line 1)) (3.1.9)
+[2026-10-13T13:56:40.249Z] #10 4.422 Requirement already satisfied: packaging in /usr/local/lib/python3.11/site-packages (from gunicorn<24,>=23.0->-r requirements.txt (line 2)) (26.3)
+[2026-10-13T13:56:40.249Z] #10 4.465 Collecting iniconfig>=1 (from pytest<9,>=8.3->-r requirements-dev.txt (line 2))
+[2026-10-13T13:56:40.249Z] #10 4.470   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+[2026-10-13T13:56:40.249Z] #10 4.510 Collecting pluggy<2,>=1.5 (from pytest<9,>=8.3->-r requirements-dev.txt (line 2))
+[2026-10-13T13:56:40.249Z] #10 4.515   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+[2026-10-13T13:56:40.249Z] #10 4.573 Collecting pygments>=2.7.2 (from pytest<9,>=8.3->-r requirements-dev.txt (line 2))
+[2026-10-13T13:56:40.500Z] #10 4.578   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+[2026-10-13T13:56:40.500Z] #10 4.624 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+[2026-10-13T13:56:40.500Z] #10 4.635    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 365.8/365.8 kB 117.5 MB/s eta 0:00:00
+[2026-10-13T13:56:40.500Z] #10 4.651 Downloading ruff-0.12.12-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.3 MB)
+[2026-10-13T13:56:40.751Z] #10 4.854    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.3/13.3 MB 79.7 MB/s eta 0:00:00
+[2026-10-13T13:56:40.752Z] #10 4.859 Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+[2026-10-13T13:56:40.752Z] #10 4.866 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+[2026-10-13T13:56:40.752Z] #10 4.874 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+[2026-10-13T13:56:40.752Z] #10 4.888    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 132.3 MB/s eta 0:00:00
+[2026-10-13T13:56:40.752Z] #10 5.075 Installing collected packages: ruff, pygments, pluggy, iniconfig, pytest
+[2026-10-13T13:56:43.237Z] #10 7.195 Successfully installed iniconfig-2.3.1 pluggy-1.6.0 pygments-2.21.0 pytest-8.4.2 ruff-0.12.12
+[2026-10-13T13:56:43.237Z] #10 7.196 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[2026-10-13T13:56:43.488Z] #10 DONE 7.7s
+[2026-10-13T13:56:43.488Z] 
+[2026-10-13T13:56:43.488Z] #11 [test 3/4] COPY app.py .
+[2026-10-13T13:56:43.488Z] #11 DONE 0.1s
+[2026-10-13T13:56:43.488Z] 
+[2026-10-13T13:56:43.488Z] #12 [test 4/4] COPY tests ./tests
+[2026-10-13T13:56:43.488Z] #12 DONE 0.0s
+[2026-10-13T13:56:43.739Z] 
+[2026-10-13T13:56:43.739Z] #13 exporting to image
+[2026-10-13T13:56:43.739Z] #13 exporting layers
+[2026-10-13T13:56:43.990Z] #13 exporting layers 0.4s done
+[2026-10-13T13:56:43.990Z] #13 writing image sha256:0b65b764f22194791508c3e98dbe0c0749cd4e2f66d248497c5f9716e4de1d48 done
+[2026-10-13T13:56:43.990Z] #13 naming to docker.io/library/aceest-fitness:test-3 done
+[2026-10-13T13:56:43.990Z] #13 DONE 0.4s
+[8mha:////4BAsPBj3Ukn9+dNZmFVI6qGNXIPN4kUu+erDICGiavnPAAAApB+LCAAAAAAAAP9tjbEOwiAURV9rHFwd/QiaNG7GyZWw+AXYIkLJexSodPKL/DX/QbSJk3e4uecu5/mCdQxwpKCZVTgYjJ1h3k26LJYpDFdHmVm6sI4wklNMqCyoV6cFBSUFS6oaVhw2CjtH0aBOsOVW3mXjJOrmnEL5Dhxq04/wgIoXc5IhfWEOsLtNfST8ef4KYPY+Qd3uP9W+Ad3NsHm+AAAA[0m[Pipeline] }
+[8mha:////4LDNkmrxAUBQXHVE2vfiUkrUhtRJfQtz7LpNFPnFVcnqAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIikKgQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGMIGcrd/lPbN8JP5Su+AAAA[0m[Pipeline] // stage
+[8mha:////4FQeP5Dq5foeh4hdIQB0GdINYe+JcLkJao5PecQYykl8AAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUIMGCOrFGXThBaEJIGv1fkpR04kRcjTsQqMSEB8u2ZL3nC6rgoSGvmVXYGwydYYMbdU4ske8vjhKzdGYdYSCnWKtSS1Id59pSVDCrKGHBYamwcxQM6ggrbsVd1E6grk/R5+3AoTTyBg8oeCZH4eO3TB7W11EGwh/nLwCmIUK52WXb7j/P6g1mJwqBwgAAAA==[0m[Pipeline] stage
+[8mha:////4EDA2gNIR1eqC9CEmQDuJ8Y+9ZKoYJZ9MwxJYriU1a49AAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUYoABMXWNsnCC0ISQNvq//KS0EyfiatyBlkpMeLBsS9Z7vaGIDCdiJxqLrcdYe9GF3k1JDMTtNdAgGrqImjBSsELZQZGx1VIVJQuLshxWEtYW60DRo0uwkY1+6DJodOU58bQdJeTe3OEJmZzISXP6lpFhe+tNJPxx/gJg7BLku/1sh/lZfAAyQCqkwgAAAA==[0m[Pipeline] { (Lint)
+[8mha:////4JMJ1cxCgGhAvmh5Ys60514zaZEkyBbNvEV2by+w/R4jAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIi0YCEqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDhnK7+9Q+vAGvZp0gvgAAAA==[0m[Pipeline] sh
+[2026-10-13T13:56:44.464Z] + docker run --rm aceest-fitness:test-3 ruff check app.py tests
+[2026-10-13T13:56:44.715Z] All checks passed!
+[8mha:////4D1A8m8M/bTHcPKLeLnvDqmLPbSr7D9jbt8NX9guBOq/AAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIi0SCEqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDyFBu95/avQGMKkS1vgAAAA==[0m[Pipeline] }
+[8mha:////4Hk7xYxBQcUGiq5eW8/sjZJKfPZLQn28HuXn1WmwNRdiAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOKCQKJBqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDut7l2hw9mQDtDvgAAAA==[0m[Pipeline] // stage
+[8mha:////4BHGCxl20/JESkWUvAhJPSy7SQVoMi8nMt1dN8dckPNkAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUFWJCTF2jLpwgNCEkjf4vSUo6cSKuxh0IVGLCg2Vbst7zBVXwcCSvmVU4GAy9YaObdE4skR8ujhKzdGY9YSCnWKdSR1K1S+0oKlhUlLDisFbYOwoGdYQNt+IuaidQ16fo83bgUBp5gwcUPJOj8PFbZg/b6yQD4Y/zFwDzGKFs9tl2zedZvQFqHHg6wgAAAA==[0m[Pipeline] stage
+[8mha:////4BJh+FGB2l91NNkVEj59LXnmUCrSvTxgkR223KY28xfUAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUwIiYukZZOEFoQkgb/V9+UtqJE3E17kBLJSY8WLYl673eUESGE7ETjcXWY6y96ELvpiQG4vYaaBANXURNGClYoeygyNhqqYqShUVZDisJa4t1oOjRJdjIRj90GTS68px42o4Scm/u8IRMTuSkOX3LyLC99SYS/jh/ATB2CfLDbrb9/Cw+2YMO4MIAAAA=[0m[Pipeline] { (Unit Tests)
+[8mha:////4NuZVKc9pOcLiHbKipLqv+qO3RBV+1gSx64oqlfNIJPeAAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIikRJR0VppeIFJjLFj3Tm2g1PxIr7GHwhEomKL1c4283zBOgY4ctBoFfWGYmvQu1HPCzOH/uo4o+ULtkyRncJG5YY7dVqw4aRgSVHCSsBGUes4GtIJtsLKu6ycJF2dU5i/g4DSdAM8oBCzOcmQvjAF2N3GLjL9PH8FMPkEZb3/VO3favo5XL4AAAA=[0m[Pipeline] sh
+[2026-10-13T13:56:45.408Z] + docker run --rm aceest-fitness:test-3
+[2026-10-13T13:56:46.754Z] ============================= test session starts ==============================
+[2026-10-13T13:56:46.754Z] platform linux -- Python 3.11.17, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python3.11
+[2026-10-13T13:56:46.754Z] cachedir: .pytest_cache
+[2026-10-13T13:56:46.754Z] rootdir: /app
+[2026-10-13T13:56:47.308Z] collecting ... collected 63 items
+[2026-10-13T13:56:47.308Z] 
+[2026-10-13T13:56:47.561Z] tests/test_app.py::test_home PASSED                                      [  1%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_health PASSED                                    [  3%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_list_programs PASSED                             [  4%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_create_client PASSED                             [  6%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_reject_invalid_age PASSED                        [  7%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_reject_invalid_program PASSED                    [  9%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_get_missing_client PASSED                        [ 11%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_reject_duplicate_client PASSED                   [ 12%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_program_detail PASSED                            [ 14%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_program_detail_missing PASSED                    [ 15%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_all_programs_have_plans PASSED                   [ 17%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_list_clients_sorted PASSED                       [ 19%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_list_clients_empty PASSED                        [ 20%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_reject_non_json_body PASSED                      [ 22%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_reject_blank_name PASSED                         [ 23%]
+[2026-10-13T13:56:47.562Z] tests/test_app.py::test_reject_invalid_weight PASSED                     [ 25%]
+[2026-10-13T13:56:47.563Z] tests/test_app.py::test_reject_boolean_age PASSED                        [ 26%]
+[2026-10-13T13:56:47.564Z] tests/test_app.py::test_name_is_trimmed PASSED                           [ 28%]
+[2026-10-13T13:56:47.564Z] tests/test_app.py::test_get_client PASSED                                [ 30%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_update_client_recalculates_calories PASSED       [ 31%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_update_missing_client PASSED                     [ 33%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_update_rejects_invalid_data PASSED               [ 34%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_delete_client PASSED                             [ 36%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_delete_missing_client PASSED                     [ 38%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_goals_are_stored PASSED                          [ 39%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_reject_invalid_goals PASSED                      [ 41%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_log_progress_with_explicit_week PASSED           [ 42%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_log_progress_defaults_to_current_week PASSED     [ 44%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_log_progress_validation PASSED                   [ 46%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_progress_requires_existing_client PASSED         [ 47%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_get_progress_lists_entries_in_order PASSED       [ 49%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_progress_summary_without_data PASSED             [ 50%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_progress_summary_with_goals PASSED               [ 52%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_progress_target_not_met PASSED                   [ 53%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_delete_client_removes_progress PASSED            [ 55%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_height_is_stored_and_validated PASSED            [ 57%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_log_workout_with_exercises PASSED                [ 58%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_workout_defaults PASSED                          [ 60%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_workout_validation PASSED                        [ 61%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_workouts_sorted_newest_first PASSED              [ 63%]
+[2026-10-13T13:56:47.565Z] tests/test_app.py::test_workouts_and_metrics_need_existing_client PASSED [ 65%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_log_metrics_updates_weight_and_calories PASSED   [ 66%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_metrics_without_weight_keep_client_weight PASSED [ 68%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_metrics_validation PASSED                        [ 69%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_metrics_sorted_by_date PASSED                    [ 71%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_weight_trend PASSED                              [ 73%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_bmi_categories PASSED                            [ 74%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_bmi_value PASSED                                 [ 76%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_bmi_requires_height PASSED                       [ 77%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_delete_client_removes_workouts_and_metrics PASSED [ 79%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_membership_active PASSED                         [ 80%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_membership_expires_on_last_day_inclusive PASSED  [ 82%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_membership_expired PASSED                        [ 84%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_membership_not_set PASSED                        [ 85%]
+[2026-10-13T13:56:47.566Z] tests/test_app.py::test_membership_validation PASSED                     [ 87%]
+[2026-10-13T13:56:47.817Z] tests/test_app.py::test_generate_program_beginner_full_body PASSED       [ 88%]
+[2026-10-13T13:56:47.817Z] tests/test_app.py::test_generate_program_focus_follows_program PASSED    [ 90%]
+[2026-10-13T13:56:47.817Z] tests/test_app.py::test_generate_program_is_deterministic_and_stored PASSED [ 92%]
+[2026-10-13T13:56:47.817Z] tests/test_app.py::test_generate_program_validation PASSED               [ 93%]
+[2026-10-13T13:56:47.817Z] tests/test_app.py::test_report_for_minimal_client PASSED                 [ 95%]
+[2026-10-13T13:56:47.817Z] tests/test_app.py::test_report_for_full_client PASSED                    [ 96%]
+[2026-10-13T13:56:47.817Z] tests/test_app.py::test_report_validation PASSED                         [ 98%]
+[2026-10-13T13:56:47.817Z] tests/test_app.py::test_delete_client_removes_generated_program PASSED   [100%]
+[2026-10-13T13:56:47.817Z] 
+[2026-10-13T13:56:47.817Z] ============================== 63 passed in 0.88s ==============================
+[8mha:////4GZRQiICGcsku6BDxth1ai1XPsa50IeNbMkrG1/e03BnAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiAR2iSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwhQ7nbf2r7Bij33Ma+AAAA[0m[Pipeline] }
+[8mha:////4FDUuz3mMFE6m+YmOXyiCvcSl3URYlqCC3naI/bMpVlnAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIihKgQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGMIGcrd/lPbNzd1iZS+AAAA[0m[Pipeline] // stage
+[8mha:////4GDe6bpdzp2qT33p914a5nRk/RUS+Q0/neMGijNXJ26bAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUCMGCOrFGXThBaEJIGv1fkpR04kRcjTsQqMSEB8u2ZL3nC6rgoSGvmVXYGwydYYMbdU4ske8vjhKzdGYdYSCnWKtSS1Id59pSVDCrKGHBYamwcxQM6ggrbsVd1E6grk/R5+3AoTTyBg8oeCZH4eO3TB7W11EGwh/nLwCmIUK52WXb7j/P6g3SLH0nwgAAAA==[0m[Pipeline] stage
+[8mha:////4NfUfBHw3KVD1Mcy/E1wnhqcPNYgCm2w6Hj9x9HTqpHOAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0QIIBMXWNsnCC0ISQNvq//KS0EyfiatyBlkpMeLBsS9Z7vaGIDCdiJxqLrcdYe9GF3k1JDMTtNdAgGrqImjBSsELZQZGx1VIVJQuLshxWEtYW60DRo0uwkY1+6DJodOU58bQdJeTe3OEJmZzISXP6lpFhe+tNJPxx/gJg7BLku/1sh/lZfADpB/iZwgAAAA==[0m[Pipeline] { (Build Runtime Image)
+[8mha:////4NoGVqEPsqWS+m64xHV7eFHjijAMWx972X5QTHHW3oGFAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSUICEqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDhnK7+9Q+vAEGDPXtvgAAAA==[0m[Pipeline] sh
+[2026-10-13T13:56:48.537Z] + docker build -t aceest-fitness:jenkins-3 .
+[2026-10-13T13:56:49.088Z] #0 building with "default" instance using docker driver
+[2026-10-13T13:56:49.089Z] 
+[2026-10-13T13:56:49.089Z] #1 [internal] load build definition from Dockerfile
+[2026-10-13T13:56:49.089Z] #1 transferring dockerfile: 1.58kB done
+[2026-10-13T13:56:49.089Z] #1 DONE 0.0s
+[2026-10-13T13:56:49.089Z] 
+[2026-10-13T13:56:49.089Z] #2 [internal] load metadata for docker.io/library/python:3.11-slim
+[2026-10-13T13:56:49.089Z] #2 DONE 0.3s
+[2026-10-13T13:56:49.339Z] 
+[2026-10-13T13:56:49.339Z] #3 [internal] load .dockerignore
+[2026-10-13T13:56:49.339Z] #3 transferring context: 231B done
+[2026-10-13T13:56:49.339Z] #3 DONE 0.0s
+[2026-10-13T13:56:49.340Z] 
+[2026-10-13T13:56:49.340Z] #4 [base 1/4] FROM docker.io/library/python:3.11-slim@sha256:e88e9763f943ec1834f992a4b51e0f24500486803e8bc534e5767af9ea65f6ce
+[2026-10-13T13:56:49.340Z] #4 DONE 0.0s
+[2026-10-13T13:56:49.340Z] 
+[2026-10-13T13:56:49.340Z] #5 [internal] load build context
+[2026-10-13T13:56:49.340Z] #5 transferring context: 170B done
+[2026-10-13T13:56:49.340Z] #5 DONE 0.0s
+[2026-10-13T13:56:49.340Z] 
+[2026-10-13T13:56:49.340Z] #6 [base 2/4] WORKDIR /app
+[2026-10-13T13:56:49.340Z] #6 CACHED
+[2026-10-13T13:56:49.340Z] 
+[2026-10-13T13:56:49.340Z] #7 [base 4/4] RUN pip install -r requirements.txt
+[2026-10-13T13:56:49.340Z] #7 CACHED
+[2026-10-13T13:56:49.340Z] 
+[2026-10-13T13:56:49.340Z] #8 [base 3/4] COPY requirements.txt .
+[2026-10-13T13:56:49.340Z] #8 CACHED
+[2026-10-13T13:56:49.340Z] 
+[2026-10-13T13:56:49.340Z] #9 [runtime 1/2] RUN groupadd --system --gid 10001 app     && useradd --system --uid 10001 --gid app --no-create-home        --shell /usr/sbin/nologin app
+[2026-10-13T13:56:49.340Z] #9 CACHED
+[2026-10-13T13:56:49.340Z] 
+[2026-10-13T13:56:49.340Z] #10 [runtime 2/2] COPY app.py .
+[2026-10-13T13:56:49.340Z] #10 CACHED
+[2026-10-13T13:56:49.340Z] 
+[2026-10-13T13:56:49.340Z] #11 exporting to image
+[2026-10-13T13:56:49.340Z] #11 exporting layers done
+[2026-10-13T13:56:49.340Z] #11 writing image sha256:17f390ef76c3a0936a25e54b3beb84042a0c259c71e21006c2266fae95e561a4 done
+[2026-10-13T13:56:49.340Z] #11 naming to docker.io/library/aceest-fitness:jenkins-3 done
+[2026-10-13T13:56:49.340Z] #11 DONE 0.0s
+[8mha:////4OvINfyQOTZESA1Odni/BMK4uhplSWJzJc9X+npPlVKoAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSUCCEqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDyFBu95/avQF5ECgKvgAAAA==[0m[Pipeline] }
+[8mha:////4JB9n38xGuQvzp3dvTnVBrd13PJ5Xy+qQaMvo9xM2YcIAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOKCBKJBqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDut7l2hw+pT4efvgAAAA==[0m[Pipeline] // stage
+[8mha:////4M3ajdzvumiDDPqgUFgq9BP8p3QRyln7IqUmR/aiN4p6AAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUlWBCTF2jLpwgNCEkjf4vSUo6cSKuxh0IVGLCg2Vbst7zBVXwcCSvmVU4GAy9YaObdE4skR8ujhKzdGY9YSCnWKdSR1K1S+0oKlhUlLDisFbYOwoGdYQNt+IuaidQ16fo83bgUBp5gwcUPJOj8PFbZg/b6yQD4Y/zFwDzGKFs9tl2zedZvQHkIt//wgAAAA==[0m[Pipeline] stage
+[8mha:////4C3kevv/NGphGBB7CG6D7w+GALZTmdpnBG9HghBukRgwAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUIDbE1DXKwglCE0La6P/yk9JOnIircQdaKjHhwbItWe/1hiIynIidaCy2HmPtRRd6NyUxELfXQINo6CJqwkjBCmUHRcZWS1WULCzKclhJWFusA0WPLsFGNvqhy6DRlefE03aUkHtzhydkciInzelbRobtrTeR8Mf5C4CxS5AfdrPt52fxAdhUMVHCAAAA[0m[Pipeline] { (Smoke Test)
+[8mha:////4KTMQKITwEYhZDBbuPQhR9OvddeTPJKtd/HqEoDroy8OAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiAR2iSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwZyv32U7vwBvbls1O+AAAA[0m[Pipeline] sh
+[2026-10-13T13:56:49.797Z] + docker run -d --name aceest-smoke-3 aceest-fitness:jenkins-3
+[2026-10-13T13:56:49.797Z] c21534f43991e3de117a42b7bb93dd0e92dbc455fc7eaf202b98bd7ccbc5eea8
+[2026-10-13T13:56:50.349Z] + status=starting
+[2026-10-13T13:56:50.350Z] ++ seq 1 30
+[2026-10-13T13:56:50.350Z] + for i in $(seq 1 30)
+[2026-10-13T13:56:50.350Z] ++ docker inspect --format '{{.State.Health.Status}}' aceest-smoke-3
+[2026-10-13T13:56:50.350Z] + status=starting
+[2026-10-13T13:56:50.350Z] + '[' starting = healthy ']'
+[2026-10-13T13:56:50.350Z] + sleep 2
+[2026-10-13T13:56:52.835Z] + for i in $(seq 1 30)
+[2026-10-13T13:56:52.835Z] ++ docker inspect --format '{{.State.Health.Status}}' aceest-smoke-3
+[2026-10-13T13:56:52.835Z] + status=starting
+[2026-10-13T13:56:52.835Z] + '[' starting = healthy ']'
+[2026-10-13T13:56:52.835Z] + sleep 2
+[2026-10-13T13:56:54.698Z] + for i in $(seq 1 30)
+[2026-10-13T13:56:54.698Z] ++ docker inspect --format '{{.State.Health.Status}}' aceest-smoke-3
+[2026-10-13T13:56:54.698Z] + status=starting
+[2026-10-13T13:56:54.698Z] + '[' starting = healthy ']'
+[2026-10-13T13:56:54.698Z] + sleep 2
+[2026-10-13T13:56:56.562Z] + for i in $(seq 1 30)
+[2026-10-13T13:56:56.562Z] ++ docker inspect --format '{{.State.Health.Status}}' aceest-smoke-3
+[2026-10-13T13:56:56.562Z] + status=healthy
+[2026-10-13T13:56:56.562Z] + '[' healthy = healthy ']'
+[2026-10-13T13:56:56.562Z] + break
+[2026-10-13T13:56:56.562Z] + '[' healthy '!=' healthy ']'
+[2026-10-13T13:56:56.562Z] ++ docker exec aceest-smoke-3 id -u
+[2026-10-13T13:56:56.562Z] + '[' 10001 '!=' 0 ']'
+[2026-10-13T13:56:56.562Z] + echo 'Container is healthy and runs as a non-root user'
+[2026-10-13T13:56:56.562Z] Container is healthy and runs as a non-root user
+[8mha:////4IJXwUYMixWRJFAum8e6gIqp8H3erwYg5/JmNGwlAsuTAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIioXSIitZKwwtMYowd686xHZyKF/E1/kAgEhVbrHa2mecL1jHAkYNGq6g3FFuD3o16Xpg59FfHGS1fsGWK7BQ2KjfcqdOCDScFS4oSVgI2ilrH0ZBOsBVW3mXlJOnqnML8HQSUphvgAYWYzUmG9IUpwO42dpHp5/krgMn7BGVdf2r/BmFfOky+AAAA[0m[Pipeline] }
+[8mha:////4FGG2+MRP4OSOg5V72sTnCZf3HLbNWw2rkBp8hg73QAcAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiJKgQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGMIGcrd/lPbN37dbx6+AAAA[0m[Pipeline] // stage
+[8mha:////4EOw7LbqqeU64b72FwIBu3Ff0EC6wRg7QXbuG/VKAK4vAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUSMCCOrFGXThBaEJIGv1fkpR04kRcjTsQqMSEB8u2ZL3nC6rgoSGvmVXYGwydYYMbdU4ske8vjhKzdGYdYSCnWKtSS1Id59pSVDCrKGHBYamwcxQM6ggrbsVd1E6grk/R5+3AoTTyBg8oeCZH4eO3TB7W11EGwh/nLwCmIUK52WXb7j/P6g1cEtriwgAAAA==[0m[Pipeline] stage
+[8mha:////4KohOwCN10JTcDzoUM6RXmbAbE6Ry6o9pC9cgJHeNzr4AAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0QTAgpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD+jQxyjCAAAA[0m[Pipeline] { (Declarative: Post Actions)
+[8mha:////4N/5pLAHWfOXTOR4TnRc2uOMBygFnPYa4BwGPD7WrqhEAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOLSIIGEqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDhnK7+9Q+vAGaE3/ivgAAAA==[0m[Pipeline] sh
+[2026-10-13T13:56:57.352Z] + docker rm -f aceest-smoke-3
+[2026-10-13T13:56:57.639Z] aceest-smoke-3
+[8mha:////4FPmY79UxivG82Jb6M0vqe7qyfXlgZtTlwSfJu4E/dzaAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOLSICGEqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDhnK7+9Q+vAHbImT7vgAAAA==[0m[Pipeline] sh
+[2026-10-13T13:56:58.069Z] + docker rmi -f aceest-fitness:test-3
+[2026-10-13T13:56:58.069Z] Untagged: aceest-fitness:test-3
+[2026-10-13T13:56:58.069Z] Deleted: sha256:0b65b764f22194791508c3e98dbe0c0749cd4e2f66d248497c5f9716e4de1d48
+[8mha:////4NQjEOO1bTH+MTTiQx7TRFBXCPF6BcMOy2iUpG//cPfJAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJCAaJAqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKYhQrk75Npvhw+l82QrvgAAAA==[0m[Pipeline] echo
+[2026-10-13T13:56:58.278Z] ===== Jenkins build completed successfully =====
+[8mha:////4JkatDqw8GrMz7I64gYlu4IYW8iwgK5wt/Tn4yae4LDRAAAAph+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiJBAFSkVrueEFJjHGiXUXbAen4kV8jT9gEYmKLVY728zrDcvgoWZvsNPUWwqNxcGNJi9M7Pur44QdX7BhCuw0Sp0kt/o0o+SoYU5RwkLASlPjOFgyEdaiUw9VOUWmOkefv6OA0rZ3eEIhsjkqH78wedjcxjYw/Tx/BTANQ4Ryv821O3wA6THqyr4AAAA=[0m[Pipeline] }
+[8mha:////4LTWyHI5HsvEPa/ybRvZ8NbBdEtpaxplASBdsJ5JhfWeAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiIaBBqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDut7l2hw/Rc3k7vgAAAA==[0m[Pipeline] // stage
+[8mha:////4MGfY3qGkSJ4xkSM+f/SEHe3jTgbn17pSdDs3piGM/lKAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIihFIhqrRWGl5gYmOcWHfGdkgqXsTX+AMWkajYYrWzzbzesI4BThwM9poGS7Gz6N1o8sKJw3B1PGHPF+yYIjuNrZ5aVrpZsOWkYUlRwkrARlPnOFoyCbailw9ZOUmmOqeQv6OA0qo7PKEQ2ZxkSF+YA+xuo4pMP89fAczeJyjrQ659/QGLBVsUvgAAAA==[0m[Pipeline] }
+[8mha:////4MVKHaBu0QID1DHc2rB+ciIjSVaC1NscMJLAgJr9wNTnAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPMIRUqgQVVorDS8w8WGcWHfGdkgqXsTX+AMWkajYYrWzzbzesI4BThyM6JEGS7GzwrvR5CUmDsPV8SR6voiOKbJD0eLUssZmwZYTwpKihJWEDVLnOFoyCbayVw9VOUWmOqeQv6OE0uo7PKGQ2ZxUSF+YA+xuo45MP89fAczeJygPda59/QGlBVl+vgAAAA==[0m[Pipeline] // timestamps
+[8mha:////4JR4JnM9sfs4yFt4f/TkMrRwq8l6Is3AIDF3idOVob1YAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIihFIhqrRWGl5gYmOcWHfGdkgqXsTX+AMWkajYYrWzzbzesI4BThwM9poGS7Gz6N1o8sKJw3B1PGHPF+yYIjuNrZ5aVrpZsOWkYUlRwkrARlPnOFoyCbailw9ZOUmmOqeQv6OA0qo7PKEQ2ZxkSF+YA+xuo4pMP89fAczeJyjrOtf+8AGjQ2ErvgAAAA==[0m[Pipeline] }
+[8mha:////4C8Cqc/T/Dm9FvJkTDQVw521IMpgJvVXtCbRnvzG677PAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIikKBBqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDuD7m2uw+bAfLavgAAAA==[0m[Pipeline] // withEnv
+[8mha:////4ByudYoqB25duaPII3VJJj2GA9evt1pO5YGH6+cDu+VPAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOKiFIgCUaW10vACExvjxLoztkNS8SK+xh+wiETFFqudbeb1hnUMcOJgsNc0WIqdRe9GkxdOHIar4wl7vmDHFNlpbPXUstLNgi0nDUuKElYCNpo6x9GSSbAVvXzIykky1TmF/B0FlFbd4QmFyOYkQ/rCHGB3G1Vk+nn+CmD2PkG5P+Sq6w+Eg6eIvgAAAA==[0m[Pipeline] }
+[8mha:////4NeWHQypZi1TohjfujTbVTZEb34YkyJacEdZFdggkB3TAAAAph+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOICBRISSkVrueEFJjHGiXUXbAen4kV8jT9gEYmKLVY728zrDcvgoWZvsNPUWwqNxcGNJi9M7Pur44QdX7BhCuw0Sp0kt/o0o+SoYU5RwkLASlPjOFgyEdaiUw9VOUWmOkefv6OA0rZ3eEIhsjkqH78wedjcxjYw/Tx/BTANQ4Ryf8i1234AxwH2Dr4AAAA=[0m[Pipeline] // withEnv
+[8mha:////4Pi+OmVftp/eTdFuHBMRflq76FV+VAE8fIeUVlGaE6PwAAAAox+LCAAAAAAAAP9tjTEOwjAQBDdBFLSUPMJpoECIitZKwwtMYowT6y7YF5KKF/E1/kBEJCq22plmXm8sU8SRo1ONpdZTqrzqQu+mpwaO7TXwoBq+qIopcbCqtEPJtT3NWLJYzMtyLDRWlqrAyZMTrHVjHqYIhlxxlji5g0bu6zueyPRUFhPlC2PE5tbXienX+RvA2HWCfLcXZNsP4gvERL0AAAA=[0m[Pipeline] }
+[8mha:////4IIYOanCdjueDAilJQPgo7QaQ2SNMJJWKxB+elPyZ5L0AAAApB+LCAAAAAAAAP9tjTEOwjAQBDdBFLSUPMJBQqJBVLRWGl5gEmOcWHfBvpBUvIiv8QciIlGx1c4083pjmSKOHJ1qLLWeUuVVF3o3PTVwbK+BB9XwRVVMiYNVpR1Kru1pxpLFYl6WY6GxslQFTp6cYK0b8zBFMOSKs8TJHTRyX9/xRKanspgoXxgjNre+Tky/zt8Axq4T5PutINt9AJ6OJFG9AAAA[0m[Pipeline] // node
+[8mha:////4DZ5P30N4030gVw8h82MDKAAcG2VsKhP1CGSaJ1w8eYzAAAAox+LCAAAAAAAAP9tjTEOwjAQBDdBFLSUPMIRFDSIitZKwwtMYowT6y7YF5KKF/E1/kBEJCq22plmXm8sU8SRo1ONpdZTqrzqQu+mpwaO7TXwoBq+qIopcbCqtEPJtT3NWLJYzMtyLDRWlqrAyZMTrHVjHqYIhlxxlji5g0bu6zueyPRUFhPlC2PE5tbXienX+RvA2HWCfL8VZLsPuJdDG70AAAA=[0m[Pipeline] End of Pipeline
+Finished: SUCCESS
