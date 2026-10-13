@@ -59,10 +59,17 @@ jobs:
       - name: Smoke-test the runtime container
         run: |
           docker run -d --name aceest-ci -p 5000:5000 aceest-fitness:ci
-          curl --fail --silent --show-error \
-            --retry 15 --retry-delay 1 --retry-connrefused \
-            http://localhost:5000/health
-          echo
+          for i in $(seq 1 30); do
+            if curl --fail --silent --show-error http://localhost:5000/health; then
+              echo
+              break
+            fi
+            if [ "$i" -eq 30 ]; then
+              echo "Container did not become healthy in time"
+              exit 1
+            fi
+            sleep 1
+          done
           test "$(docker exec aceest-ci id -u)" != "0"
           echo "Container runs as a non-root user"
 
