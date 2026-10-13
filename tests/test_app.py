@@ -503,3 +503,151 @@ def test_delete_client_removes_workouts_and_metrics(client):
     add_client(client)
     assert client.get("/clients/Test User/workouts").json == []
     assert client.get("/clients/Test User/metrics").json == []
+
+
+def test_membership_active(client):
+    add_client(client, membership_expiry="2026-12-31")
+    response = client.get("/clients/Test User/membership?as_of=2026-12-01")
+    assert response.status_code == 200
+    assert response.json["status"] == "Active"
+    assert response.json["days_remaining"] == 30
+
+
+def test_membership_expires_on_last_day_inclusive(client):
+    add_client(client, membership_expiry="2026-12-31")
+    response = client.get("/clients/Test User/membership?as_of=2026-12-31")
+    assert response.json["status"] == "Active"
+    assert response.json["days_remaining"] == 0
+
+
+def test_membership_expired(client):
+    add_client(client, membership_expiry="2026-01-01")
+    response = client.get("/clients/Test User/membership?as_of=2026-02-01")
+    assert response.json["status"] == "Expired"
+    assert response.json["days_remaining"] == -31
+
+
+def test_membership_not_set(client):
+    add_client(client)
+    response = client.get("/clients/Test User/membership")
+    assert response.status_code == 200
+    assert response.json["status"] == "No membership"
+    assert response.json["days_remaining"] is None
+
+
+def test_membership_validation(client):
+    response = client.post(
+        "/clients", json=dict(PROFILE, membership_expiry="31/12/2026")
+    )
+    assert response.status_code == 400
+    add_client(client)
+    assert client.get("/clients/Test User/membership?as_of=bad").status_code == 400
+    assert client.get("/clients/Ghost/membership").status_code == 404
+
+
+def test_generate_program_beginner_full_body(client):
+    add_client(client)
+    response = client.post(
+        "/clients/Test User/generate-program", json={"experience": "Beginner"}
+    )
+    assert response.status_code == 201
+    assert response.json["focus"] == "Full Body"
+    assert len(response.json["days"]) == 3
+    first = response.json["days"][0]
+    assert first["day"] == "Monday"
+    assert len(first["exercises"]) == 3
+    assert first["exercises"][0] == {"exercise": "Push-Up", "sets": 3, "reps": 10}
+
+
+def test_generate_program_focus_follows_program(client):
+    add_client(client, name="Cut", program="Fat Loss (FL)")
+    add_client(client, name="Bulk", program="Muscle Gain (MG)")
+    cut = client.post(
+        "/clients/Cut/generate-program", json={"experience": "advanced"}
+    ).json
+    bulk = client.post(
+        "/clients/Bulk/generate-program", json={"experience": "intermediate"}
+    ).json
+    assert cut["focus"] == "Conditioning"
+    assert len(cut["days"]) == 5
+    assert bulk["focus"] == "Hypertrophy"
+    assert len(bulk["days"]) == 4
+    assert bulk["days"][0]["exercises"][0]["sets"] == 4
+
+
+def test_generate_program_is_deterministic_and_stored(client):
+    add_client(client)
+    url = "/clients/Test User/generate-program"
+    assert client.get(url).status_code == 404
+    first = client.post(url, json={"experience": "beginner"}).json
+    second = client.post(url, json={"experience": "beginner"}).json
+    assert first == second
+    assert client.get(url).json == first
+
+
+def test_generate_program_validation(client):
+    add_client(client)
+    url = "/clients/Test User/generate-program"
+    assert client.post(url, json={"experience": "expert"}).status_code == 400
+    assert client.post(url, json={}).status_code == 400
+    assert client.post(url, data="nope").status_code == 400
+    assert client.post(
+        "/clients/Ghost/generate-program", json={"experience": "beginner"}
+    ).status_code == 404
+    assert client.get("/clients/Ghost/generate-program").status_code == 404
+
+
+def test_report_for_minimal_client(client):
+    add_client(client)
+    response = client.get("/clients/Test User/report?as_of=2026-10-13")
+    assert response.status_code == 200
+    report = response.json
+    assert report["profile"]["name"] == "Test User"
+    assert report["membership"]["status"] == "No membership"
+    assert report["progress"]["weeks_logged"] == 0
+    assert report["bmi"] is None
+    assert report["workouts"] == {"sessions": 0, "total_minutes": 0}
+    assert report["metrics"] == {"entries": 0, "latest": None}
+    assert report["generated_program"] is None
+    assert report["generated_on"] == "2026-10-13"
+
+
+def test_report_for_full_client(client):
+    add_client(
+        client,
+        height=175,
+        membership_expiry="2026-12-31",
+        target_adherence=70,
+    )
+    base = "/clients/Test User"
+    client.post(base + "/progress", json={"adherence": 80, "week": "2026-W40"})
+    client.post(base + "/workouts", json={"workout_type": "Mixed", "duration_min": 30})
+    client.post(base + "/workouts", json={"workout_type": "Strength", "duration_min": 45})
+    client.post(base + "/metrics", json={"weight": 69, "date": "2026-10-01"})
+    client.post(base + "/metrics", json={"waist": 80, "date": "2026-10-09"})
+    client.post(base + "/generate-program", json={"experience": "beginner"})
+
+    report = client.get(base + "/report?as_of=2026-12-01").json
+    assert report["membership"]["status"] == "Active"
+    assert report["progress"]["adherence_target_met"] is True
+    assert report["bmi"]["bmi"] == 22.5
+    assert report["workouts"] == {"sessions": 2, "total_minutes": 75}
+    assert report["metrics"]["entries"] == 1
+    assert report["metrics"]["latest"]["date"] == "2026-10-09"
+    assert report["generated_program"]["experience"] == "beginner"
+
+
+def test_report_validation(client):
+    add_client(client)
+    assert client.get("/clients/Test User/report?as_of=bad").status_code == 400
+    assert client.get("/clients/Ghost/report").status_code == 404
+
+
+def test_delete_client_removes_generated_program(client):
+    add_client(client)
+    client.post(
+        "/clients/Test User/generate-program", json={"experience": "beginner"}
+    )
+    client.delete("/clients/Test User")
+    add_client(client)
+    assert client.get("/clients/Test User/generate-program").status_code == 404
