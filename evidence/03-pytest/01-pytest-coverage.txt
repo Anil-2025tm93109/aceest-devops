@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.21, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/s2025tm93109/workspace/Assignment2
+plugins: cov-7.1.0
+collected 67 items
+
+tests/test_ab_proxy.py ....                                              [  5%]
+tests/test_app.py ...................................................... [ 86%]
+.........                                                                [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.21-final-0 ________________
+
+Name                  Stmts   Miss  Cover
+-----------------------------------------
+app.py                  368      3    99%
+scripts/ab_proxy.py      22      2    91%
+-----------------------------------------
+TOTAL                   390      5    99%
+============================== 67 passed in 3.91s ==============================
