@@ -1,0 +1,29 @@
+NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+aceest-a          1/1     1            1           6h4m
+aceest-ab-proxy   1/1     1            1           6h2m
+aceest-b          1/1     1            1           6h4m
+aceest-canary     1/1     1            1           6h26m
+aceest-green      2/2     2            2           6h36m
+aceest-shadow     1/1     1            1           6h16m
+aceest-v2         2/2     2            2           6h48m
+NAME                               READY   STATUS    RESTARTS      AGE
+aceest-a-5dd8787f7-sjvvl           1/1     Running   1 (21m ago)   6h4m
+aceest-ab-proxy-6bf66b4b57-djcpd   1/1     Running   1 (21m ago)   6h2m
+aceest-b-5785f664c4-kxszb          1/1     Running   1 (21m ago)   6h4m
+aceest-canary-66569db6d6-s4x6f     1/1     Running   1 (21m ago)   6h26m
+aceest-green-54d789496-lg6ws       1/1     Running   1 (21m ago)   6h36m
+aceest-green-54d789496-vmfq6       1/1     Running   1 (21m ago)   6h36m
+aceest-shadow-5bfdf8d8b8-jwdlg     1/1     Running   1 (21m ago)   6h16m
+aceest-v2-76cb57987-5qhmm          1/1     Running   0             107s
+aceest-v2-76cb57987-f8v9x          1/1     Running   0             114s
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    21  100    21    0     0   3000      0 --:--:-- --:--:-- --:--:--  3500
+HTTP/1.1 200 OK
+Server: gunicorn
+Date: Tue, 24 Nov 2026 10:25:45 GMT
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 21
+
+{"status":"healthy"}
