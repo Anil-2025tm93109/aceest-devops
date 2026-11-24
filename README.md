@@ -15,6 +15,7 @@ GitHub Actions and Jenkins.
 - [API reference](#api-reference)
 - [Running the tests manually](#running-the-tests-manually)
 - [Docker](#docker)
+- [Kubernetes deployment](#kubernetes-deployment)
 - [CI/CD overview](#cicd-overview)
 - [Git workflow](#git-workflow)
 - [Design notes and limitations](#design-notes-and-limitations)
@@ -159,6 +160,26 @@ Image design choices: slim base image, no test or dev tools in the final image, 
 user (`uid 10001`), a built-in `HEALTHCHECK`, and gunicorn instead of the Flask development
 server. Gunicorn runs **one worker with four threads** on purpose, because client data is held
 in process memory and several worker processes would each see different data.
+
+## Kubernetes deployment
+
+The project includes Kubernetes manifests for multiple deployment strategies.
+
+| Manifest | Purpose |
+|---|---|
+| `k8s/base.yaml` | Main application Deployment and NodePort Service |
+| `k8s/green.yaml` | Green Deployment |
+| `k8s/canary.yaml` | Canary Deployment |
+| `k8s/shadow.yaml` | Shadow Deployment and internal ClusterIP Service |
+| `k8s/ab-variants.yaml` | Independent A and B Deployments and NodePort Services |
+
+The A and B variants currently use the same container image. They provide
+independent endpoints and do not implement automatic traffic splitting.
+The Shadow Service provides internal access but does not implement automatic
+traffic mirroring.
+
+See [Kubernetes Deployment Guide](docs/kubernetes-deployment.md) for setup
+and verification instructions.
 
 ## CI/CD overview
 
