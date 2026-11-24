@@ -50,3 +50,35 @@ The Shadow Service provides internal cluster access. It does not implement autom
 In another terminal:
 
 `curl http://localhost:18080/health`
+## 8. Deployment verification results
+
+The following application deployments were verified in the `aceest` namespace:
+
+| Deployment | Ready replicas | Result |
+|---|---:|---|
+| aceest-v2 | 2/2 | Running |
+| aceest-green | 2/2 | Running |
+| aceest-canary | 1/1 | Running |
+| aceest-shadow | 1/1 | Running |
+| aceest-a | 1/1 | Running |
+| aceest-b | 1/1 | Running |
+
+### Service health checks
+
+The A, B and Shadow Services were individually tested using kubectl port-forward.
+
+| Service | Local test port | HTTP status | Response |
+|---|---:|---|---|
+| aceest-a-service | 18082 | 200 OK | Healthy |
+| aceest-b-service | 18083 | 200 OK | Healthy |
+| aceest-shadow-service | 18084 | 200 OK | Healthy |
+
+All three endpoints returned:
+
+`{"status":"healthy"}`
+
+### Known limitation
+
+The legacy `aceest-ab-proxy` Deployment remains in CrashLoopBackOff.
+The independent A and B Deployments and Services work without this proxy.
+Automated A/B traffic splitting is not implemented.
