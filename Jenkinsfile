@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -16,14 +17,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Pulls the latest code from the GitHub repository configured on the job
                 checkout scm
             }
         }
 
         stage('Clean Build') {
             steps {
-                // --no-cache forces a from-scratch build of the test image
                 sh 'docker build --no-cache --target test -t "$TEST_IMAGE" .'
             }
         }
@@ -34,9 +33,19 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') {
+        stage('Unit Tests and Coverage') {
             steps {
-                sh 'docker run --rm "$TEST_IMAGE"'
+                sh '''
+                    docker run --rm \
+                      -v "$WORKSPACE:/workspace" \
+                      -w /app \
+                      "$TEST_IMAGE" \
+                      python -m pytest \
+                      --cov=app \
+                      --cov=scripts.ab_proxy \
+                      --cov-report=term-missing \
+                      --cov-report=xml:/workspace/coverage.xml
+                '''
             }
         }
 
@@ -64,6 +73,22 @@ pipeline {
                     [ "$(docker exec "$CONTAINER" id -u)" != "0" ]
                     echo "Container is healthy and runs as a non-root user"
                 '''
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh '/usr/local/bin/sonar-scanner'
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
     }
