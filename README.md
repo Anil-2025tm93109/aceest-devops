@@ -241,3 +241,5 @@ Application features were delivered one pull request at a time:
   an extra dependency.
 - Program generation is **deterministic** (the prototype used random choices), which makes
   it testable.
+
+Jenkins SCM polling verification: 24-Nov-2026
