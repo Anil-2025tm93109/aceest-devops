@@ -105,8 +105,13 @@ pipeline {
                         echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USER" --password-stdin
                         docker tag "$RUN_IMAGE" "$IMAGE"
                         docker push "$IMAGE"
+
+                        LATEST_IMAGE="akumarnk/aceest-fitness:latest"
+                        docker tag "$RUN_IMAGE" "$LATEST_IMAGE"
+                        docker push "$LATEST_IMAGE"
+
                         docker logout
-                        echo "Published $IMAGE"
+                        echo "Published $IMAGE and $LATEST_IMAGE"
                     '''
                 }
             }
