@@ -1,0 +1,36 @@
+ACEest Fitness - Kubernetes Verification
+Tue Nov 24 09:40:25 PM IST 2026
+
+NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+aceest-a          1/1     1            1           7m57s
+aceest-ab-proxy   0/1     1            0           59m
+aceest-b          1/1     1            1           7m57s
+aceest-canary     1/1     1            1           59m
+aceest-green      2/2     2            2           59m
+aceest-shadow     1/1     1            1           59m
+aceest-v2         2/2     2            2           59m
+
+NAME                               READY   STATUS             RESTARTS         AGE
+aceest-a-5889b9d499-5z5vq          1/1     Running            0                7m57s
+aceest-ab-proxy-644c498d6f-cv44p   0/1     CrashLoopBackOff   13 (4m44s ago)   46m
+aceest-b-5d5dcbb876-qdlxk          1/1     Running            0                7m57s
+aceest-canary-b7c7858c8-ct9s7      1/1     Running            0                46m
+aceest-green-c8f6d6c4b-29pbc       1/1     Running            0                46m
+aceest-green-c8f6d6c4b-ntnfp       1/1     Running            0                46m
+aceest-shadow-6dc9b67c8d-xx776     1/1     Running            0                46m
+aceest-v2-599cbf784c-mbdx9         1/1     Running            0                46m
+aceest-v2-599cbf784c-p2tsc         1/1     Running            0                46m
+
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+aceest-a-service        NodePort    10.100.15.177    <none>        5000:30082/TCP   7m58s
+aceest-ab-service       NodePort    10.99.116.154    <none>        8080:30081/TCP   59m
+aceest-b-service        NodePort    10.103.99.160    <none>        5000:30083/TCP   7m58s
+aceest-service          NodePort    10.99.54.239     <none>        5000:30080/TCP   59m
+aceest-shadow-service   ClusterIP   10.101.148.133   <none>        5000/TCP         7m58s
+
+NAME                    ENDPOINTS                           AGE
+aceest-a-service        10.244.0.29:5000                    7m58s
+aceest-ab-service                                           59m
+aceest-b-service        10.244.0.30:5000                    7m58s
+aceest-service          10.244.0.25:5000,10.244.0.27:5000   59m
+aceest-shadow-service   10.244.0.22:5000                    7m58s
