@@ -1,0 +1,36 @@
+ACEest Fitness - Kubernetes Deployment Verification
+Tue Nov 24 09:16:10 AM IST 2026
+---- HEALTH ENDPOINT ----
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    21  100    21    0     0   3000      0 --:--:-- --:--:-- --:--:--  3000
+HTTP/1.1 200 OK
+Server: gunicorn
+Date: Tue, 24 Nov 2026 03:46:10 GMT
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 21
+
+{"status":"healthy"}
+---- APPLICATION ENDPOINT ----
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    66  100    66    0     0  11000      0 --:--:-- --:--:-- --:--:-- 13200
+HTTP/1.1 200 OK
+Server: gunicorn
+Date: Tue, 24 Nov 2026 03:46:10 GMT
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 66
+
+{"application":"ACEest Fitness & Performance","status":"running"}
+---- KUBERNETES RESOURCES ----
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS       IMAGES                SELECTOR
+deployment.apps/aceest-v2   2/2     2            2           8m29s   aceest-fitness   aceest-fitness:v2.0   app=aceest-fitness,version=v2
+
+NAME                            READY   STATUS    RESTARTS   AGE     IP           NODE       NOMINATED NODE   READINESS GATES
+pod/aceest-v2-76cb57987-psz8x   1/1     Running   0          8m29s   10.244.0.3   minikube   <none>           <none>
+pod/aceest-v2-76cb57987-pwzl9   1/1     Running   0          8m29s   10.244.0.4   minikube   <none>           <none>
+
+NAME                     TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE     SELECTOR
+service/aceest-service   NodePort   10.108.104.151   <none>        5000:30080/TCP   8m29s   app=aceest-fitness,version=v2

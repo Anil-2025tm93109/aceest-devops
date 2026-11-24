@@ -8,3 +8,12 @@ aceest_fitness.db
 .env
 .coverage
 htmlcov/
+
+# SonarQube generated files
+.scannerwork/
+
+# Coverage reports (generated during tests)
+coverage.xml
+
+# Temporary command output
+*.tmp

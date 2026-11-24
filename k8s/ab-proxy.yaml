@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aceest-ab-proxy
+  namespace: aceest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aceest-ab-proxy
+  template:
+    metadata:
+      labels:
+        app: aceest-ab-proxy
+    spec:
+      containers:
+        - name: proxy
+          image: aceest-fitness:v2.0
+          imagePullPolicy: Never
+          command: ["python", "/config/proxy.py"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: proxy-config
+              mountPath: /config
+      volumes:
+        - name: proxy-config
+          configMap:
+            name: aceest-ab-proxy
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aceest-ab-service
+  namespace: aceest
+spec:
+  type: NodePort
+  selector:
+    app: aceest-ab-proxy
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30081
