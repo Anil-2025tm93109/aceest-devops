@@ -1,0 +1,18 @@
+===== SHADOW DEPLOYMENT TEST =====
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+aceest-shadow   1/1     1            1           6h11m
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+aceest-shadow-service   ClusterIP   10.110.66.208   <none>        5000/TCP   6h11m
+PRODUCTION RESPONSE
+HTTP: 200
+Body: {"status":"healthy"}
+
+
+SHADOW RESPONSE
+HTTP: 200
+Body: {"status":"healthy"}
+
+
+USER-FACING RESPONSE: PRODUCTION ONLY
+{"status":"healthy"}
+

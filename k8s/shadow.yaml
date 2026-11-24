@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aceest-shadow
+  namespace: aceest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aceest-shadow
+  template:
+    metadata:
+      labels:
+        app: aceest-shadow
+    spec:
+      containers:
+        - name: aceest-fitness
+          image: aceest-fitness:v2.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5

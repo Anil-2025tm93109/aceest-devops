@@ -19,9 +19,10 @@ COPY requirements-dev.txt .
 RUN pip install -r requirements-dev.txt
 
 COPY app.py .
+COPY scripts ./scripts
 COPY tests ./tests
 
-CMD ["pytest", "-v"]
+CMD ["python", "-m", "pytest", "-v"]
 
 
 # ---- runtime: small, non-root production image (default target) ------------
