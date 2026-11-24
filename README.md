@@ -37,7 +37,7 @@ The API grew version by version from the original ACEest desktop prototypes (v1.
 ├── app.py                  # Flask application
 ├── requirements.txt        # Runtime dependencies (Flask, gunicorn)
 ├── requirements-dev.txt    # Adds pytest and ruff for development and CI
-├── tests/test_app.py       # Pytest suite (63 tests)
+├── tests/test_app.py       # Pytest suite (67 tests)
 ├── Dockerfile              # Multi-stage build: base, test, runtime
 ├── .dockerignore
 ├── Jenkinsfile             # Jenkins pipeline definition
@@ -186,7 +186,7 @@ cheaply. Concurrent runs for the same branch are cancelled when a newer push arr
 A declarative pipeline for the controlled **BUILD** phase, defined as code in this repository:
 
 ```text
-Checkout -> Clean Build -> Lint -> Unit Tests -> Build Runtime Image -> Smoke Test
+Checkout -> Clean Build -> Lint -> Unit Tests and Coverage -> Build Runtime Image -> Smoke Test -> SonarQube Analysis -> Quality Gate -> Push to Docker Hub
 ```
 
 - **Checkout** pulls the latest commit from GitHub.
@@ -200,7 +200,7 @@ Jenkins setup:
 1. Create a **Pipeline** job.
 2. Under *Pipeline*, choose **Pipeline script from SCM**, set SCM to **Git**, and use the
    repository URL `https://github.com/Anil-2025tm93109/aceest-devops.git`.
-3. Set the branch to `*/main` and the script path to `Jenkinsfile`.
+3. Set the branch to `*/assignment-2` and the script path to `Jenkinsfile`.
 4. Optionally enable **Poll SCM** (for example `H/5 * * * *`) to build new commits automatically.
 5. The Jenkins user must be allowed to run `docker`.
 
@@ -208,7 +208,7 @@ Jenkins setup:
 
 | | GitHub Actions | Jenkins |
 |---|---|---|
-| When | Every push and pull request | On demand or on a poll of `main` |
+| When | Every push and pull request | On demand or on a poll of `assignment-2` |
 | Role | Fast feedback before merging | Clean, from-scratch build in a controlled environment |
 | Build cache | Used | Disabled (`--no-cache`) |
 | Result | Check shown on the pull request | Console log and build status |

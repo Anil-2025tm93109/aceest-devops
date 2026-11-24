@@ -91,6 +91,26 @@ pipeline {
                 }
             }
         }
+
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-credentials',
+                    usernameVariable: 'DOCKERHUB_USER',
+                    passwordVariable: 'DOCKERHUB_TOKEN'
+                )]) {
+                    sh '''
+                        set +x
+                        IMAGE="akumarnk/aceest-fitness:build-$BUILD_NUMBER"
+                        echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USER" --password-stdin
+                        docker tag "$RUN_IMAGE" "$IMAGE"
+                        docker push "$IMAGE"
+                        docker logout
+                        echo "Published $IMAGE"
+                    '''
+                }
+            }
+        }
     }
 
     post {

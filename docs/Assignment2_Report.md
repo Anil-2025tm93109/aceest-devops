@@ -34,7 +34,7 @@ Automated testing was performed using Pytest.
 - **SonarQube coverage:** 90.9% on new code and 98.7% overall, as reported by the analysis.
 - **Security and reliability findings:** The recorded analysis reported no bugs, vulnerabilities or security hotspots remaining unreviewed.
 
-Jenkins build #6 completed successfully. The pipeline included checkout, build, lint, test, image build, smoke test, SonarQube analysis and quality-gate validation. An SCM polling event detected a repository change and triggered the build.
+Jenkins build #6 completed successfully with checkout, build, lint, automated tests, runtime image build, smoke test, SonarQube analysis and quality-gate validation. SCM polling was also verified. A Docker Hub publishing stage has since been added to the Jenkinsfile; its successful execution is subject to a subsequent Jenkins run.
 
 ## 4. Containerization and Registry
 
@@ -72,6 +72,6 @@ The final cluster verification showed all seven deployments ready and all nine p
 
 The project demonstrates an integrated CI workflow using GitHub, Jenkins, automated tests, Docker and SonarQube, along with Docker Hub image publishing and Kubernetes deployment strategy exercises.
 
-The Jenkins pipeline completed successfully, the SonarQube quality gate passed, the Docker Hub tags were verified, and the Kubernetes workloads passed the final readiness and application health checks.
+The recorded Jenkins build completed successfully, the SonarQube quality gate passed, the existing Docker Hub tags were verified, and the Kubernetes workloads passed the recorded readiness and application health checks. The newly added Docker Hub publishing stage requires a subsequent Jenkins run for execution verification.
 
 The Kubernetes strategy demonstrations are proof-of-concept implementations. Weighted canary traffic, transparent production traffic mirroring, distinct A/B application variants, and a publicly reachable cluster endpoint would require additional configuration for a production-grade deployment.
